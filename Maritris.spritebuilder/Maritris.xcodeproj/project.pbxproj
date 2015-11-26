@@ -105,7 +105,8 @@
 		D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */; };
 		D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */ = {isa = PBXBuildFile; fileRef = D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */; };
 		D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB510C1C073E2400F7E553 /* EMIArray2D.m */; };
-		D0CB51121C0740FA00F7E553 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51111C0740FA00F7E553 /* MainScene.m */; };
+		D0CB51121C0740FA00F7E553 /* EMIMainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51111C0740FA00F7E553 /* EMIMainScene.m */; };
+		D0CB51161C074EB700F7E553 /* EMIStartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51151C074EB700F7E553 /* EMIStartScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,8 +251,10 @@
 		D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisGame.m; sourceTree = "<group>"; };
 		D0CB510B1C073E2400F7E553 /* EMIArray2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArray2D.h; sourceTree = "<group>"; };
 		D0CB510C1C073E2400F7E553 /* EMIArray2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArray2D.m; sourceTree = "<group>"; };
-		D0CB51101C0740FA00F7E553 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
-		D0CB51111C0740FA00F7E553 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
+		D0CB51101C0740FA00F7E553 /* EMIMainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMainScene.h; sourceTree = "<group>"; };
+		D0CB51111C0740FA00F7E553 /* EMIMainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMainScene.m; sourceTree = "<group>"; };
+		D0CB51141C074EB700F7E553 /* EMIStartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIStartScene.h; path = EMIStartScene/EMIStartScene.h; sourceTree = "<group>"; };
+		D0CB51151C074EB700F7E553 /* EMIStartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIStartScene.m; path = EMIStartScene/EMIStartScene.m; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -596,6 +599,7 @@
 		D080DCE11BF3E6F600D4DA7C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D0CB51131C074E7E00F7E553 /* EMIStartScene */,
 				D0CB510F1C0740FA00F7E553 /* EMIMainScene */,
 			);
 			name = UI;
@@ -748,10 +752,19 @@
 		D0CB510F1C0740FA00F7E553 /* EMIMainScene */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB51101C0740FA00F7E553 /* MainScene.h */,
-				D0CB51111C0740FA00F7E553 /* MainScene.m */,
+				D0CB51101C0740FA00F7E553 /* EMIMainScene.h */,
+				D0CB51111C0740FA00F7E553 /* EMIMainScene.m */,
 			);
 			path = EMIMainScene;
+			sourceTree = "<group>";
+		};
+		D0CB51131C074E7E00F7E553 /* EMIStartScene */ = {
+			isa = PBXGroup;
+			children = (
+				D0CB51141C074EB700F7E553 /* EMIStartScene.h */,
+				D0CB51151C074EB700F7E553 /* EMIStartScene.m */,
+			);
+			name = EMIStartScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1029,7 +1042,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0CB51121C0740FA00F7E553 /* MainScene.m in Sources */,
+				D0CB51121C0740FA00F7E553 /* EMIMainScene.m in Sources */,
+				D0CB51161C074EB700F7E553 /* EMIStartScene.m in Sources */,
 				D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */,
 				D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */,
 				D080DD721C00ECE800D4DA7C /* EMIShapeS.m in Sources */,

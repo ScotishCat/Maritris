@@ -1,4 +1,4 @@
-#import "MainScene.h"
+#import "EMIMainScene.h"
 
 #import "EMIMaritrisGame.h"
 #import "EMIBlock.h"
@@ -8,25 +8,22 @@
 static const CGFloat kEMIBlockSize = 20.0f;
 static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 
-@interface MainScene () <EMIMaritrisGameDelegate>
-
+@interface EMIMainScene () <EMIMaritrisGameDelegate>
 @property (nonatomic, readonly) EMIMaritrisGame *gameLogic;
 
-@property (nonatomic, readonly) CCNode *gameLayer;
-@property (nonatomic, readonly) CCNode *shapeLayer;
+@property (nonatomic, readonly) CCNode  *gameLayer;
+@property (nonatomic, readonly) CCNode  *shapeLayer;
 @property (nonatomic, readonly) CGPoint layerPosition;
 
-@property (nonatomic, assign) NSTimeInterval updateLengthMilliseconds;
-
-@property (nonatomic, copy) NSDate *lastUpdate;
-
+@property (nonatomic, assign)   NSTimeInterval      updateLengthMilliseconds;
+@property (nonatomic, copy)     NSDate              *lastUpdate;
 @property (nonatomic, readonly) NSMutableDictionary *textureChache;
 
 - (void)performGameUpdate;
 
 @end
 
-@implementation MainScene
+@implementation EMIMainScene
 
 - (instancetype)init {
     self = [super init];
@@ -47,10 +44,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 
             [self addChild:_gameLayer];
             [_gameLayer addChild:_shapeLayer];
-            
-
-            
-
+    
             CCNode *gameBoard = [CCNode node];
             gameBoard.contentSize = CGSizeMake(kEMIBlockSize * kEMIGameNumberOfColumns, kEMIBlockSize * kEMIGameNumberOfRows);
             gameBoard.anchorPoint = ccp(0, 1);
@@ -59,19 +53,16 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
             _shapeLayer.position = _layerPosition;
             [_shapeLayer addChild:gameBoard];
             
-
             CCNodeColor *verticalBorder = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0 green:0 blue:1]];
             verticalBorder.anchorPoint = ccp(0, 1);
             verticalBorder.contentSize = CGSizeMake(2, 500);
             verticalBorder.position = ccp(10, 500);
             [_shapeLayer addChild:verticalBorder];
 
-
             CCNode *block = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];;
             block.contentSize = CGSizeMake(kEMIBlockSize, kEMIBlockSize);
             block.position = [self pointForColumn:10 row:26];
             [_shapeLayer addChild:block];
-
 
             CCNode *block2 = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.9f green:0.2f blue:0.2f alpha:1.0f]];;
             block2.contentSize = CGSizeMake(kEMIBlockSize, kEMIBlockSize);
@@ -122,7 +113,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     
     [self nextShape];
 }
-
 
 #pragma mark -
 
