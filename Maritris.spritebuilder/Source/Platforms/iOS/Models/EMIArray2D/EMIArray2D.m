@@ -13,7 +13,7 @@
 @interface EMIArray2D ()
 @property (nonatomic, assign)   NSUInteger      rowsNumber;
 @property (nonatomic, assign)   NSUInteger      columnsNumber;
-@property (nonatomic, strong)   NSMutableArray  *rows;
+@property (nonatomic, strong)   NSMutableArray  *columns;
 
 @end
 
@@ -22,17 +22,17 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)arrayWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber {
-    return [[self alloc] initWithRowsNumber:rowsNumber columnsNumber:columnsNumber];
++ (instancetype)arrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber {
+    return [[self alloc] initWithColumnsNumber:columnsNumber rowsNumber:rowsNumber];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber {
+- (instancetype)initWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber {
     self = [super init];
     if (self) {
-        self.rows = [NSMutableArray null2DArrayWithRowsNumber:rowsNumber columnsNumber:columnsNumber];
+        self.columns = [NSMutableArray null2DArrayWithColumnsNumber:columnsNumber rowsNumber:rowsNumber];
         self.rowsNumber = rowsNumber;
         self.columnsNumber = columnsNumber;
     }
@@ -43,12 +43,12 @@
 #pragma mark -
 #pragma mark Public
 
-- (id)objectAtRow:(NSUInteger)row column:(NSUInteger)column {
-    return [[self.rows objectAtIndex:row] objectAtIndex:column];
+- (id)objectAtColumn:(NSUInteger)column row:(NSUInteger)row {
+    return [[self.columns objectAtIndex:column] objectAtIndex:row];
 }
 
-- (void)setObject:(id)object atRow:(NSUInteger)row column:(NSUInteger)column {
-    [[self.rows objectAtIndex:row] replaceObjectAtIndex:column withObject:object];
+- (void)setObject:(id)object atColumn:(NSUInteger)column row:(NSUInteger)row {
+    [[self.columns objectAtIndex:column] replaceObjectAtIndex:row withObject:object];
 }
 
 @end

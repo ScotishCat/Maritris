@@ -10,7 +10,7 @@
 
 @implementation NSMutableArray (EMIExtensions)
 
-+ (instancetype)null2DArrayWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber {
++ (instancetype)null2DArrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber {
     NSMutableArray *rows = [[self alloc] initWithCapacity:rowsNumber];
     for (NSUInteger iterator = 0; iterator < rowsNumber; iterator++) {
         NSMutableArray *column = [NSMutableArray arrayWithCapacity:columnsNumber];

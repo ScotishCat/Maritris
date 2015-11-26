@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B121030197484FA004C1E1D /* MaritrisActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* MaritrisActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
-		7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
-		7A4036E819DE3F33007B6E8F /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		7A4036EE19DE3F93007B6E8F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -44,7 +42,6 @@
 		7A97911719E631C6001FFC4D /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A97910419E62E40001FFC4D /* libcocos2d-mac.a */; };
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
-		927F619E196C771E000F43EF /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
 		927F61A9196C771E000F43EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
 		927F61AA196C771E000F43EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
@@ -94,7 +91,6 @@
 		BC5399DA1A44DCC90063F482 /* GLActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D51A44DCC90063F482 /* GLActivityKit.framework */; };
 		BC5399DB1A44DCC90063F482 /* JavaFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D61A44DCC90063F482 /* JavaFoundation.framework */; };
 		BC5399DC1A44DCC90063F482 /* JavaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D71A44DCC90063F482 /* JavaKit.framework */; };
-		D080DCE51BF3FD8800D4DA7C /* EMIArray2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCE41BF3FD8800D4DA7C /* EMIArray2D.m */; };
 		D080DCE91BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */; };
 		D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCEC1BF622B200D4DA7C /* EMIBlock.m */; };
 		D080DD4F1C00DBD300D4DA7C /* EMIBlockPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */; };
@@ -108,6 +104,8 @@
 		D080DD741C00ECE800D4DA7C /* EMIShapeT.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD691C00ECE800D4DA7C /* EMIShapeT.m */; };
 		D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */; };
 		D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */ = {isa = PBXBuildFile; fileRef = D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */; };
+		D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB510C1C073E2400F7E553 /* EMIArray2D.m */; };
+		D0CB51121C0740FA00F7E553 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51111C0740FA00F7E553 /* MainScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,8 +205,6 @@
 		B737896E180762440076A88C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Source/Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		B73789851807631A0076A88C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/iOS/main.m; sourceTree = SOURCE_ROOT; };
 		B73789861807631A0076A88C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = SOURCE_ROOT; };
-		B7378992180767190076A88C /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainScene.h; path = Source/MainScene.h; sourceTree = "<group>"; };
-		B7378993180767190076A88C /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainScene.m; path = Source/MainScene.m; sourceTree = "<group>"; };
 		B77F1B2E17B978D7009739AE /* Maritris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maritris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77F1B3117B978D7009739AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B77F1B3317B978D7009739AE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -226,8 +222,6 @@
 		BC5399D51A44DCC90063F482 /* GLActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLActivityKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/GLActivityKit.framework"; sourceTree = "<group>"; };
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
-		D080DCE31BF3FD8800D4DA7C /* EMIArray2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArray2D.h; sourceTree = "<group>"; };
-		D080DCE41BF3FD8800D4DA7C /* EMIArray2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArray2D.m; sourceTree = "<group>"; };
 		D080DCE71BF5668700D4DA7C /* NSMutableArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+EMIExtensions.h"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.h"; sourceTree = "<group>"; };
 		D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+EMIExtensions.m"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.m"; sourceTree = "<group>"; };
 		D080DCEB1BF622B200D4DA7C /* EMIBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIBlock.h; path = EMIBlock/EMIBlock.h; sourceTree = "<group>"; };
@@ -254,6 +248,10 @@
 		D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeZ.m; sourceTree = "<group>"; };
 		D0950CAC1C07336500478EE5 /* EMIMaritrisGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMaritrisGame.h; sourceTree = "<group>"; };
 		D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisGame.m; sourceTree = "<group>"; };
+		D0CB510B1C073E2400F7E553 /* EMIArray2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArray2D.h; sourceTree = "<group>"; };
+		D0CB510C1C073E2400F7E553 /* EMIArray2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArray2D.m; sourceTree = "<group>"; };
+		D0CB51101C0740FA00F7E553 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		D0CB51111C0740FA00F7E553 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -482,8 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
-				B7378992180767190076A88C /* MainScene.h */,
-				B7378993180767190076A88C /* MainScene.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
@@ -587,8 +583,8 @@
 		D080DCDF1BF3E6EE00D4DA7C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D0CB510A1C073E2400F7E553 /* EMIArray2D */,
 				D0950CAB1C07336500478EE5 /* EMIMaritrisGame */,
-				D080DCE01BF3E6EE00D4DA7C /* EMIArray2D */,
 				D080DCEA1BF6227000D4DA7C /* EMIBlock */,
 				D080DD4C1C00DBD300D4DA7C /* EMIBlockPosition */,
 				D080DD521C00ECE800D4DA7C /* EMIShape */,
@@ -597,18 +593,10 @@
 			path = Source/Platforms/iOS/Models;
 			sourceTree = "<group>";
 		};
-		D080DCE01BF3E6EE00D4DA7C /* EMIArray2D */ = {
-			isa = PBXGroup;
-			children = (
-				D080DCE31BF3FD8800D4DA7C /* EMIArray2D.h */,
-				D080DCE41BF3FD8800D4DA7C /* EMIArray2D.m */,
-			);
-			path = EMIArray2D;
-			sourceTree = "<group>";
-		};
 		D080DCE11BF3E6F600D4DA7C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D0CB510F1C0740FA00F7E553 /* EMIMainScene */,
 			);
 			name = UI;
 			path = Source/Platforms/iOS/Models/UI;
@@ -746,6 +734,24 @@
 				D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */,
 			);
 			path = EMIMaritrisGame;
+			sourceTree = "<group>";
+		};
+		D0CB510A1C073E2400F7E553 /* EMIArray2D */ = {
+			isa = PBXGroup;
+			children = (
+				D0CB510B1C073E2400F7E553 /* EMIArray2D.h */,
+				D0CB510C1C073E2400F7E553 /* EMIArray2D.m */,
+			);
+			path = EMIArray2D;
+			sourceTree = "<group>";
+		};
+		D0CB510F1C0740FA00F7E553 /* EMIMainScene */ = {
+			isa = PBXGroup;
+			children = (
+				D0CB51101C0740FA00F7E553 /* MainScene.h */,
+				D0CB51111C0740FA00F7E553 /* MainScene.m */,
+			);
+			path = EMIMainScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1006,7 +1012,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A4036E819DE3F33007B6E8F /* MainScene.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
 			);
@@ -1016,7 +1021,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				927F619E196C771E000F43EF /* MainScene.m in Sources */,
 				5B121030197484FA004C1E1D /* MaritrisActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,6 +1029,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CB51121C0740FA00F7E553 /* MainScene.m in Sources */,
+				D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */,
 				D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */,
 				D080DD721C00ECE800D4DA7C /* EMIShapeS.m in Sources */,
 				D080DD701C00ECE800D4DA7C /* EMIShapeJ.m in Sources */,
@@ -1036,12 +1042,10 @@
 				D080DD711C00ECE800D4DA7C /* EMIShapeL.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				D080DD741C00ECE800D4DA7C /* EMIShapeT.m in Sources */,
-				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				D080DD731C00ECE800D4DA7C /* EMIShapeSquare.m in Sources */,
 				D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */,
 				D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
-				D080DCE51BF3FD8800D4DA7C /* EMIArray2D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

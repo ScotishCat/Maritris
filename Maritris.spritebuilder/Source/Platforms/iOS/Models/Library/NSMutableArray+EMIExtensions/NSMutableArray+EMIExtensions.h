@@ -10,6 +10,6 @@
 
 @interface NSMutableArray (EMIExtensions)
 
-+ (instancetype)null2DArrayWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber;
++ (instancetype)null2DArrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber;
 
 @end

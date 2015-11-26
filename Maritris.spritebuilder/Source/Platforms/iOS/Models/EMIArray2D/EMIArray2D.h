@@ -12,11 +12,11 @@
 @property (nonatomic, readonly) NSUInteger  rowsNumber;
 @property (nonatomic, readonly) NSUInteger  columnsNumber;
 
-+ (instancetype)arrayWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber;
++ (instancetype)arrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber;
 
-- (instancetype)initWithRowsNumber:(NSUInteger)rowsNumber columnsNumber:(NSUInteger)columnsNumber;
+- (instancetype)initWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber;
 
-- (id)objectAtRow:(NSUInteger)row column:(NSUInteger)column;
-- (void)setObject:(id)object atRow:(NSUInteger)row column:(NSUInteger)column;
+- (id)objectAtColumn:(NSUInteger)column row:(NSUInteger)row;
+- (void)setObject:(id)object atColumn:(NSUInteger)column row:(NSUInteger)row;
 
 @end

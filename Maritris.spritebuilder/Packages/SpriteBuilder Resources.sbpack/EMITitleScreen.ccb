@@ -146,8 +146,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -181,11 +179,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>155.47402954101562</real>
-							<real>207.05856323242188</real>
+							<real>0.49292817711830139</real>
+							<real>0.36453971266746521</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -219,7 +217,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>play</string>
+							<string>onPlayButton</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -515,11 +513,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>157.73701477050781</real>
-							<real>134.64309692382812</real>
+							<real>0.49292817711830139</real>
+							<real>0.2370477020740509</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -553,7 +551,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>leaderBoard</string>
+							<string>onLeaderboardButton</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -598,9 +596,17 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Leader board</string>
+							<string>Leaderboard</string>
 							<false/>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>zoomWhenHighlighted</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -808,6 +814,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
