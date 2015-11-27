@@ -1,3 +1,3 @@
-@interface MainScene : CCNode
+@interface EMIMainScene : CCNode
 
 @end

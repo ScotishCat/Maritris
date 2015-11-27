@@ -10,4 +10,19 @@
 
 @implementation EMIStartScene
 
+#pragma mark -
+#pragma mark Interface Handler
+
+- (void)onLeaderboardButton {
+    if ([self.delegate respondsToSelector:@selector(startSceneDidRequestLeaderboard:)]) {
+        [self.delegate startSceneDidRequestLeaderboard:self];
+    }
+}
+
+- (void)onPlayButton {
+    if ([self.delegate respondsToSelector:@selector(startSceneDidRequestPlayScene:)]) {
+        [self.delegate startSceneDidRequestPlayScene:self];
+    }
+}
+
 @end

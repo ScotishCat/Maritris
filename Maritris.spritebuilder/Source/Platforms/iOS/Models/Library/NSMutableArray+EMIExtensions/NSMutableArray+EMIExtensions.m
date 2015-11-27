@@ -11,18 +11,18 @@
 @implementation NSMutableArray (EMIExtensions)
 
 + (instancetype)null2DArrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber {
-    NSMutableArray *rows = [[self alloc] initWithCapacity:rowsNumber];
-    for (NSUInteger iterator = 0; iterator < rowsNumber; iterator++) {
-        NSMutableArray *column = [NSMutableArray arrayWithCapacity:columnsNumber];
+    NSMutableArray *columns = [[self alloc] initWithCapacity:columnsNumber];
+    for (NSUInteger iterator = 0; iterator < columnsNumber; iterator++) {
+        NSMutableArray *row = [NSMutableArray arrayWithCapacity:rowsNumber];
         
-        for (NSUInteger iterator = 0; iterator < columnsNumber; iterator++) {
-            [column setObject:[NSNull null] atIndexedSubscript:iterator];
+        for (NSUInteger iterator = 0; iterator < rowsNumber; iterator++) {
+            [row setObject:[NSNull null] atIndexedSubscript:iterator];
         }
         
-        [rows addObject:column];
+        [columns addObject:row];
     }
     
-    return rows;
+    return columns;
 }
 
 @end

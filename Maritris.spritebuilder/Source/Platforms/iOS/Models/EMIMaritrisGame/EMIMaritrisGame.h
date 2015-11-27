@@ -35,6 +35,7 @@ extern const NSUInteger kEMIGameNumberOfRows;
 // Both params are arrays that contain arrays of EMIBlock objects.
 // removedLines is an array of removed lines, where each line is an array of blocks.
 // fallenBlocks is an array of sub-arrays, where sub-array represents columns of blocks that fall down.
+
 typedef void(^EMIRemoveCompletedLinesCompletion)(NSArray *removedLines, NSArray *fallenBlocks);
 
 @interface EMIMaritrisGame : NSObject
