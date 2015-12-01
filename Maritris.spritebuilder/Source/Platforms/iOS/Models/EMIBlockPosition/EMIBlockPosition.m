@@ -12,8 +12,6 @@
 @property (nonatomic, assign) NSUInteger column;
 @property (nonatomic, assign) NSUInteger row;
 
-- (NSString *)description;
-
 @end
 
 @implementation EMIBlockPosition
@@ -67,8 +65,9 @@
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Debug description
 
+// Inherited from NSObject
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@, column: %lu, row: %lu",
             [super description],

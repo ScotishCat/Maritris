@@ -12,11 +12,11 @@
 
 + (instancetype)null2DArrayWithColumnsNumber:(NSUInteger)columnsNumber rowsNumber:(NSUInteger)rowsNumber {
     NSMutableArray *columns = [[self alloc] initWithCapacity:columnsNumber];
-    for (NSUInteger iterator = 0; iterator < columnsNumber; iterator++) {
+    for (NSUInteger columnsIterator = 0; columnsIterator < columnsNumber; columnsIterator++) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:rowsNumber];
         
-        for (NSUInteger iterator = 0; iterator < rowsNumber; iterator++) {
-            [row setObject:[NSNull null] atIndexedSubscript:iterator];
+        for (NSUInteger rowsIterator = 0; rowsIterator < rowsNumber; rowsIterator++) {
+            [row setObject:[NSNull null] atIndexedSubscript:rowsIterator];
         }
         
         [columns addObject:row];

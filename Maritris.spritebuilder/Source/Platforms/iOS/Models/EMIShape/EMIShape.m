@@ -148,7 +148,7 @@ const NSUInteger kEMIShapeFourthBlockIndex = 3;
 }
 
 - (void)rotateToOrientation:(EMIShapeOrientation)orientation {
-    NSArray *blocksOffsets = self.blockOffsetsToOrientationMap[@(self.orientation)];
+    NSArray *blocksOffsets = self.blockOffsetsToOrientationMap[@(orientation)];
     if (!blocksOffsets) {
         return;
     }
@@ -172,7 +172,7 @@ const NSUInteger kEMIShapeFourthBlockIndex = 3;
 - (EMIShapeOrientation)rotateOrientation:(EMIShapeOrientation)orientation clockwise:(BOOL)clockwise {
     // Increase or decrease orientation value by 1
     NSInteger value = orientation + (clockwise ? 1 : -1);
-    EMIShapeOrientation newOrientation = (EMIShapeOrientation)value;
+    EMIShapeOrientation newOrientation = (EMIShapeOrientation)value == EMIShapeOrientationCount ? EMIShapeOrientation0 : value;
     if (value > EMIShapeOrientation270) {
         // We've made 360 degree turn, reset to 0
         newOrientation = EMIShapeOrientation0;

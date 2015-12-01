@@ -6,7 +6,7 @@
 #import "EMIShape.h"
 
 static const CGFloat kEMIBlockSize = 20.0f;
-static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
+static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 
 @interface EMIMainScene () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
 
@@ -24,6 +24,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
 
 @property (nonatomic, assign) CGPoint lastPanLocation;
 @property (nonatomic, assign, getter=isDraggingInProgress) BOOL draggingInProgress;
+
+@property (nonatomic, weak) UIView *view;
 
 - (void)performGameUpdate;
 
@@ -58,18 +60,24 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
             [self.gameLayer addChild:_shapeLayer];
 
             UIView *view = [[CCDirector sharedDirector] view];
-            UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-            panGestureRecognizer.delegate = self;
-            [view addGestureRecognizer:panGestureRecognizer];
-
+            self.view = view;
+            view.multipleTouchEnabled = NO;
+            
             UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]
                 initWithTarget:self action:@selector(handleTapGesture:)];
             tapGestureRecognizer.delegate = self;
             [view addGestureRecognizer:tapGestureRecognizer];
 
-            UIGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+            UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+            panGestureRecognizer.delegate = self;
+            [view addGestureRecognizer:panGestureRecognizer];
+
+            UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
                 initWithTarget:self action:@selector(handleSwipeGesture:)];
             swipeGestureRecognizer.delegate = self;
+            swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+//            swipeGestureRecognizer.cancelsTouchesInView = NO;
+            [view addGestureRecognizer:swipeGestureRecognizer];
 
             [self.gameLogic startGame];
         });
@@ -140,6 +148,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
 
 - (void)maritrisGameShapeDidLand:(EMIMaritrisGame *)game {
     [self stopUpdates];
+    self.view.userInteractionEnabled = YES;
     
     [game removeCompletedLinesWithCompletion:^(NSArray *removedLines, NSArray *fallenBlocks) {
        if ([removedLines count] > 0) {
@@ -209,6 +218,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
         [self addPreviewShapeToScene:self.gameLogic.nextShape completion:nil];
     }
     [self movePreviewShapeToBoard:self.gameLogic.currentShape completion:^{
+        self.view.userInteractionEnabled = YES;
         [self startUpdates];
     }];
 }
@@ -305,13 +315,23 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
     [self.gameLogic rotateShape];
 }
 
-- (void)handleSwipeGesture:(UIPanGestureRecognizer*)aPanGestureRecognizer {
+- (void)handleSwipeGesture:(UISwipeGestureRecognizer*)aPanGestureRecognizer {
     NSLog(@"Did Swipe!");
     [self.gameLogic dropShape];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+//    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]
+//        && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+//        return NO;
+//    }
+    if (([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]] &&
+        [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) ||
+        ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &&
+        [otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]])) {
+            return NO;
+    }
     return YES;
 }
 
@@ -331,12 +351,14 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer*)aSender {
-    NSLog(@"Did Pan!");
     
     CGPoint currentPoint = [aSender translationInView:aSender.view];
-    currentPoint.y *= -1;
+    if (currentPoint.y != 0) {
+        currentPoint.y *= -1;
+    }
     if (!CGPointEqualToPoint(self.lastPanLocation, CGPointZero)) {
-        if (ABS(currentPoint.x - self.lastPanLocation.x) > kEMIBlockSize * 0.9) {
+        if (ABS(currentPoint.x - self.lastPanLocation.x) > kEMIBlockSize) {
+            NSLog(@"Did Pan!");
             if ([aSender velocityInView:aSender.view].x > 0.0f) {
                 [self.gameLogic moveShapeRight];
                 self.lastPanLocation = currentPoint;
@@ -345,7 +367,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
                 self.lastPanLocation = currentPoint;
             }
         }
-    } else if (aSender.state == UIGestureRecognizerStateBegan) {
+    } else if (aSender.state == UIGestureRecognizerStateBegan
+        || CGPointEqualToPoint(self.lastPanLocation, CGPointZero)) {
         self.lastPanLocation = currentPoint;
     }
 }
