@@ -8,18 +8,18 @@
 
 #import "cocos2d.h"
 
-#import "AppDelegate.h"
+#import "EMIAppDelegate.h"
 #import "CCBuilderReader.h"
 
 #import "EMITransitionManager.h"
 #import "EMIStartScene.h"
 
-@interface AppController ()
+@interface EMIAppController ()
 @property (nonatomic, strong)   EMITransitionManager    *transitionManager;
 
 @end
 
-@implementation AppController
+@implementation EMIAppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

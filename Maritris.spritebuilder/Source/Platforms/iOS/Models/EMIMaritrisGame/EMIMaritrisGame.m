@@ -9,6 +9,7 @@
 #import "EMIMaritrisGame.h"
 
 #import "EMIShape.h"
+#import "EMIShapeSquare.h"
 #import "EMIShape+RandomCreation.h"
 #import "EMIBlockPosition.h"
 #import "EMIBlock.h"
@@ -18,13 +19,13 @@ static const NSUInteger kEMIPointsPerLine = 1;
 static const NSUInteger kEMIGameLevelThreshold = 1000;
 
 const NSUInteger kEMIGameNumberOfColumns = 10;
-const NSUInteger kEMIGameNumberOfRows = 27;
+const NSUInteger kEMIGameNumberOfRows = 24;
 
 static const NSUInteger kEMIGamePreviewColumnPosition = 11;
 static const NSUInteger kEMIGamePreviewRowPosition = 2;
 
 static const NSUInteger kEMIGameStartColumnPosition = 4;
-static const NSUInteger kEMIGameStartRowPosition = 0;
+static const NSUInteger kEMIGameStartRowPosition = 2;
 
 @interface EMIMaritrisGame ()
 
@@ -231,7 +232,6 @@ static const NSUInteger kEMIGameStartRowPosition = 0;
         [self notifyGameDidLevelUp];
     }
     
-    EMIArray2D *blocksGrid = self.blocksGrid;
     NSMutableArray *fallenBlocks = [NSMutableArray array];
     
     // Now adjust all blocks that are above our removed lines and should fall down.
@@ -243,7 +243,7 @@ static const NSUInteger kEMIGameStartRowPosition = 0;
         NSUInteger rowIndex = [[removedLines[0] objectAtIndex:0] row] - 1;
         // And iterate upwards to find the closest filled block
         for (; rowIndex > 0; rowIndex--) {
-            EMIBlock *block = [blocksGrid objectAtColumn:columnIndex row:rowIndex];
+            EMIBlock *block = [gridOfBlocks objectAtColumn:columnIndex row:rowIndex];
             if ([block isKindOfClass:[NSNull class]]) {
                 // This position is empty, skip it
                 continue;
@@ -251,16 +251,16 @@ static const NSUInteger kEMIGameStartRowPosition = 0;
             
             // Find the next position of the row - how far down we should move it
             NSUInteger newRow = rowIndex;
-            while (newRow < kEMIGameNumberOfRows && [NSNull null] == [blocksGrid objectAtColumn:columnIndex row:newRow + 1]) {
+            while (newRow < kEMIGameNumberOfRows - 1 && [NSNull null] == [gridOfBlocks objectAtColumn:columnIndex row:newRow + 1]) {
                 newRow++;
             }
             
             // Adjust block's row (move it down as needed)
             block.row = newRow;
             // Mark old position empty on the grid
-            [blocksGrid setObject:[NSNull null] atColumn:columnIndex row:rowIndex];
+            [gridOfBlocks setObject:[NSNull null] atColumn:columnIndex row:rowIndex];
             // Mark new position filled
-            [blocksGrid setObject:block atColumn:columnIndex row:newRow];
+            [gridOfBlocks setObject:block atColumn:columnIndex row:newRow];
             [fallenBlocksArray addObject:block];
         }
         if ([fallenBlocksArray count] > 0) {
@@ -338,6 +338,7 @@ static const NSUInteger kEMIGameStartRowPosition = 0;
 }
 
 - (EMIShape *)newRandomShapeForPreview {
+//    return [[EMIShapeSquare alloc] initWithPosition:self.previewPosition];
     return [EMIShape randomShapeWithPosition:self.previewPosition];
 }
 
@@ -400,4 +401,3 @@ static const NSUInteger kEMIGameStartRowPosition = 0;
 }
 
 @end
-

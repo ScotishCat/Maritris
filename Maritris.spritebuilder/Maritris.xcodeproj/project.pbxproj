@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		7A4036EE19DE3F93007B6E8F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -81,6 +80,7 @@
 		B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
+		D03A53D31C0A707900BD732F /* EMIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03A53D21C0A707900BD732F /* EMIAppDelegate.m */; };
 		D080DCE91BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */; };
 		D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCEC1BF622B200D4DA7C /* EMIBlock.m */; };
 		D080DD4F1C00DBD300D4DA7C /* EMIBlockPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */; };
@@ -177,8 +177,6 @@
 		B71F590F188484E7003F4D28 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings.png; path = Icons/Settings.png; sourceTree = "<group>"; };
 		B71F5910188484E7003F4D28 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings@2x.png"; path = "Icons/Settings@2x.png"; sourceTree = "<group>"; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
-		B737893D1807617C0076A88C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/iOS/AppDelegate.h; sourceTree = "<group>"; };
-		B737893E1807617C0076A88C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/Platforms/iOS/AppDelegate.m; sourceTree = "<group>"; };
 		B7378940180761A80076A88C /* cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d.xcodeproj; path = "Source/libs/cocos2d-iphone/cocos2d.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		B737896B180762440076A88C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Source/Resources/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		B737896C180762440076A88C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Source/Resources/Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
@@ -196,6 +194,8 @@
 		B77F1B3D17B978D7009739AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B77F1B3F17B978D7009739AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EMIAppDelegate.h; path = Source/Platforms/iOS/EMIAppDelegate.h; sourceTree = "<group>"; };
+		D03A53D21C0A707900BD732F /* EMIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIAppDelegate.m; path = Source/Platforms/iOS/EMIAppDelegate.m; sourceTree = "<group>"; };
 		D080DCE71BF5668700D4DA7C /* NSMutableArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+EMIExtensions.h"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.h"; sourceTree = "<group>"; };
 		D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+EMIExtensions.m"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.m"; sourceTree = "<group>"; };
 		D080DCEB1BF622B200D4DA7C /* EMIBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIBlock.h; path = EMIBlock/EMIBlock.h; sourceTree = "<group>"; };
@@ -343,8 +343,8 @@
 				D080DCE21BF3E70100D4DA7C /* Library */,
 				D080DCE11BF3E6F600D4DA7C /* UI */,
 				D080DCDF1BF3E6EE00D4DA7C /* Models */,
-				B737893D1807617C0076A88C /* AppDelegate.h */,
-				B737893E1807617C0076A88C /* AppDelegate.m */,
+				D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */,
+				D03A53D21C0A707900BD732F /* EMIAppDelegate.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -962,6 +962,7 @@
 				D0CB51121C0740FA00F7E553 /* EMIMainScene.m in Sources */,
 				D0CB51161C074EB700F7E553 /* EMIStartScene.m in Sources */,
 				D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */,
+				D03A53D31C0A707900BD732F /* EMIAppDelegate.m in Sources */,
 				D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */,
 				D080DD721C00ECE800D4DA7C /* EMIShapeS.m in Sources */,
 				D080DD701C00ECE800D4DA7C /* EMIShapeJ.m in Sources */,
@@ -977,7 +978,6 @@
 				D080DD731C00ECE800D4DA7C /* EMIShapeSquare.m in Sources */,
 				D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */,
 				D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */,
-				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
