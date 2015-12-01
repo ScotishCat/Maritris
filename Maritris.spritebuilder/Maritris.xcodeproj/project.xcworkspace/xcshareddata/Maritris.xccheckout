@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>551A20F1-5AA8-456D-8D32-AD04AE5AB98C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Maritris</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>84654FF836EFA72E8F687DCB643FD73047EA8AA3</key>
+		<string>https://github.com/ScotishCat/Maritris.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Maritris.spritebuilder/Maritris.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>84654FF836EFA72E8F687DCB643FD73047EA8AA3</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ScotishCat/Maritris.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>84654FF836EFA72E8F687DCB643FD73047EA8AA3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>84654FF836EFA72E8F687DCB643FD73047EA8AA3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Maritris</string>
+		</dict>
+	</array>
+</dict>
+</plist>
