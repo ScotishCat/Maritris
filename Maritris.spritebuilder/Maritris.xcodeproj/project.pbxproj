@@ -81,6 +81,7 @@
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		D03A53D31C0A707900BD732F /* EMIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03A53D21C0A707900BD732F /* EMIAppDelegate.m */; };
+		D072C6061C0F88E500A14186 /* EMIMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D072C6051C0F88E500A14186 /* EMIMacros.m */; };
 		D080DCE91BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */; };
 		D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCEC1BF622B200D4DA7C /* EMIBlock.m */; };
 		D080DD4F1C00DBD300D4DA7C /* EMIBlockPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */; };
@@ -196,6 +197,8 @@
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EMIAppDelegate.h; path = Source/Platforms/iOS/EMIAppDelegate.h; sourceTree = "<group>"; };
 		D03A53D21C0A707900BD732F /* EMIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIAppDelegate.m; path = Source/Platforms/iOS/EMIAppDelegate.m; sourceTree = "<group>"; };
+		D072C6041C0F88E500A14186 /* EMIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMacros.h; sourceTree = "<group>"; };
+		D072C6051C0F88E500A14186 /* EMIMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMacros.m; sourceTree = "<group>"; };
 		D080DCE71BF5668700D4DA7C /* NSMutableArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+EMIExtensions.h"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.h"; sourceTree = "<group>"; };
 		D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+EMIExtensions.m"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.m"; sourceTree = "<group>"; };
 		D080DCEB1BF622B200D4DA7C /* EMIBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIBlock.h; path = EMIBlock/EMIBlock.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				D080DCE21BF3E70100D4DA7C /* Library */,
+				D072C6041C0F88E500A14186 /* EMIMacros.h */,
+				D072C6051C0F88E500A14186 /* EMIMacros.m */,
 				D080DCE11BF3E6F600D4DA7C /* UI */,
 				D080DCDF1BF3E6EE00D4DA7C /* Models */,
 				D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */,
@@ -977,6 +982,7 @@
 				D080DD741C00ECE800D4DA7C /* EMIShapeT.m in Sources */,
 				D080DD731C00ECE800D4DA7C /* EMIShapeSquare.m in Sources */,
 				D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */,
+				D072C6061C0F88E500A14186 /* EMIMacros.m in Sources */,
 				D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

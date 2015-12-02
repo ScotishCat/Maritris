@@ -66,7 +66,7 @@ typedef void(^EMIRemoveCompletedLinesCompletion)(NSArray *removedLines, NSArray 
 // Returns in completion block an array of removed lines (each line is array of EMIBlock) and array of dropped blocks that were moved down
 - (void)removeCompletedLinesWithCompletion:(EMIRemoveCompletedLinesCompletion)completion;
 
-// Removes al lines from the grid, and returns array of sub-arrays which represent rows of EMIBlock objects.
+// Removes all lines from the grid, and returns array of sub-arrays which represent rows of EMIBlock objects.
 - (NSArray *)removeAllLines;
 
 @end

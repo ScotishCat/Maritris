@@ -15,20 +15,19 @@
 #import "EMIBlock.h"
 #import "EMIArray2D.h"
 
-static const NSUInteger kEMIPointsPerLine = 1;
+static const NSUInteger kEMIPointsPerLine = 25;
 static const NSUInteger kEMIGameLevelThreshold = 1000;
 
-const NSUInteger kEMIGameNumberOfColumns = 10;
-const NSUInteger kEMIGameNumberOfRows = 24;
+const NSUInteger kEMIGameNumberOfColumns = 13;
+const NSUInteger kEMIGameNumberOfRows = 35;
 
-static const NSUInteger kEMIGamePreviewColumnPosition = 11;
-static const NSUInteger kEMIGamePreviewRowPosition = 2;
+static const NSUInteger kEMIGamePreviewColumnPosition = 16;
+static const NSUInteger kEMIGamePreviewRowPosition = 5;
 
 static const NSUInteger kEMIGameStartColumnPosition = 4;
 static const NSUInteger kEMIGameStartRowPosition = 2;
 
 @interface EMIMaritrisGame ()
-
 @property (nonatomic, assign) NSUInteger score;
 @property (nonatomic, assign) NSUInteger gameLevel;
 
@@ -46,13 +45,8 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 // Creates and returns new random Shape at (kEMIGamePreviewColumnPosition, kEMIGamePreviewRowPosition)
 - (EMIShape *)newRandomShapeForPreview;
 
-- (void)notifyGameDidStart;
-- (void)notifyGameDidEnd;
-- (void)notifyShapeDidLand;
-- (void)notifyShapeDidMove;
-- (void)notifyShapeDidDrop;
-- (void)notifyGameDidIncreaseScore;
-- (void)notifyGameDidLevelUp;
+- (void)settleCurrentShape;
+- (void)notifyWithSelector:(SEL)selector;
 
 @end
 
@@ -61,16 +55,63 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.score = 0;
         self.gameLevel = 1;
         self.blocksGrid = [EMIArray2D arrayWithColumnsNumber:kEMIGameNumberOfColumns rowsNumber:kEMIGameNumberOfRows];
     }
+    
     return self;
 }
+
+#pragma mark -
+#pragma mark Accessors
+
+- (EMIBlockPosition *)startPosition {
+    return [EMIBlockPosition positionWithColumn:kEMIGameStartColumnPosition row:kEMIGameStartRowPosition];
+}
+
+- (EMIBlockPosition *)previewPosition {
+    return [EMIBlockPosition positionWithColumn:kEMIGamePreviewColumnPosition row:kEMIGamePreviewRowPosition];
+}
+
+- (BOOL)isCurrentShapeInValidPosition {
+    if (!self.currentShape) {
+        return YES;
+    }
+    
+    for (EMIBlock *currentBlock in self.currentShape.blocks) {
+        if (currentBlock.column < 0 || currentBlock.column >= kEMIGameNumberOfColumns
+            || currentBlock.row < 0 || currentBlock.row >= kEMIGameNumberOfRows) {
+            return NO;
+        } else if ([self.blocksGrid objectAtColumn:currentBlock.column row:currentBlock.row] != [NSNull null]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)isCurrentShapeOnTopOfOthers {
+    EMIShape *currentShape = self.currentShape;
+    if (!currentShape) {
+        return NO;
+    }
+    
+    EMIArray2D *blocksGrid = self.blocksGrid;
+    for (EMIBlock *bottomBlock in currentShape.bottomBlocks) {
+        if ((bottomBlock.row == kEMIGameNumberOfRows - 1) || [blocksGrid objectAtColumn:bottomBlock.column row:bottomBlock.row + 1] != [NSNull null]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (void)moveNextShapeToStart {
     // Update current shapes
@@ -94,14 +135,14 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
         self.nextShape = [self newRandomShapeForPreview];
     }
     
-    [self notifyGameDidStart];
+    [self notifyWithSelector:@selector(maritrisGameDidStart:)];
 }
 
 - (void)endGame {
     self.score = 0;
     self.gameLevel = 1;
     
-    [self notifyGameDidEnd];
+    [self notifyWithSelector:@selector(maritrisGameDidEnd:)];
 }
 
 - (void)moveShapeDown {
@@ -123,7 +164,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
             [self settleCurrentShape];
         }
     } else {
-        [self notifyShapeDidMove];
+        [self notifyWithSelector:@selector(maritrisGameShapeDidMove:)];
         if (self.isCurrentShapeOnTopOfOthers) {
             // Current shape has fallen down on other blocks on the grid, so stop it and fill the grid with shape's blocks
             [self settleCurrentShape];
@@ -142,7 +183,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
     }
     
     [currentShape moveUpOneRow];
-    [self notifyShapeDidDrop];
+    [self notifyWithSelector:@selector(maritrisGameShapeDidDrop:)];
 }
 
 - (void)rotateShape {
@@ -157,7 +198,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
         return;
     }
     
-    [self notifyShapeDidMove];
+    [self notifyWithSelector:@selector(maritrisGameShapeDidMove:)];
 }
 
 - (void)moveShapeLeft {
@@ -172,7 +213,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
         return;
     }
     
-    [self notifyShapeDidMove];
+    [self notifyWithSelector:@selector(maritrisGameShapeDidMove:)];
 }
 
 - (void)moveShapeRight {
@@ -187,7 +228,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
         return;
     }
     
-    [self notifyShapeDidMove];
+    [self notifyWithSelector:@selector(maritrisGameShapeDidMove:)];
 }
 
 - (void)removeCompletedLinesWithCompletion:(EMIRemoveCompletedLinesCompletion)completion {
@@ -226,10 +267,10 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
     // Update scores
     NSUInteger earnedPoints = [removedLines count] * kEMIPointsPerLine * self.gameLevel;
     self.score += earnedPoints;
-    [self notifyGameDidIncreaseScore];
+    [self notifyWithSelector:@selector(maritrisGameDidIncreaseScore:)];
     if (self.score >= self.gameLevel * kEMIGameLevelThreshold) {
         self.gameLevel += 1;
-        [self notifyGameDidLevelUp];
+        [self notifyWithSelector:@selector(maritrisGameDidLevelUp:)];
     }
     
     NSMutableArray *fallenBlocks = [NSMutableArray array];
@@ -295,50 +336,9 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 }
 
 #pragma mark -
-
-- (EMIBlockPosition *)startPosition {
-    return [EMIBlockPosition positionWithColumn:kEMIGameStartColumnPosition row:kEMIGameStartRowPosition];
-}
-
-- (EMIBlockPosition *)previewPosition {
-    return [EMIBlockPosition positionWithColumn:kEMIGamePreviewColumnPosition row:kEMIGamePreviewRowPosition];
-}
-
-- (BOOL)isCurrentShapeInValidPosition {
-    if (!self.currentShape) {
-        return YES;
-    }
-    
-    for (EMIBlock *currentBlock in self.currentShape.blocks) {
-        if (currentBlock.column < 0 || currentBlock.column >= kEMIGameNumberOfColumns
-                || currentBlock.row < 0 || currentBlock.row >= kEMIGameNumberOfRows) {
-            return NO;
-        } else if ([self.blocksGrid objectAtColumn:currentBlock.column row:currentBlock.row] != [NSNull null]) {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
-- (BOOL)isCurrentShapeOnTopOfOthers {
-    EMIShape *currentShape = self.currentShape;
-    if (!currentShape) {
-        return NO;
-    }
-    
-    EMIArray2D *blocksGrid = self.blocksGrid;
-    for (EMIBlock *bottomBlock in currentShape.bottomBlocks) {
-        if ((bottomBlock.row == kEMIGameNumberOfRows - 1) || [blocksGrid objectAtColumn:bottomBlock.column row:bottomBlock.row + 1] != [NSNull null]) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
+#pragma mark Private
 
 - (EMIShape *)newRandomShapeForPreview {
-//    return [[EMIShapeSquare alloc] initWithPosition:self.previewPosition];
     return [EMIShape randomShapeWithPosition:self.previewPosition];
 }
 
@@ -355,49 +355,14 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
     }
     
     self.currentShape = nil;
-    [self notifyShapeDidLand];
+    [self notifyWithSelector:@selector(maritrisGameShapeDidLand:)];
 }
 
-- (void)notifyGameDidStart {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameDidStart:)]) {
-        [self.delegate maritrisGameDidStart:self];
-    }
-}
-
-- (void)notifyGameDidEnd {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameDidEnd:)]) {
-        [self.delegate maritrisGameDidEnd:self];
-    }
-}
-
-- (void)notifyShapeDidLand {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameShapeDidLand:)]) {
-        [self.delegate maritrisGameShapeDidLand:self];
-    }
-}
-
-- (void)notifyShapeDidMove {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameShapeDidMove:)]) {
-        [self.delegate maritrisGameShapeDidMove:self];
-    }
-}
-
-- (void)notifyShapeDidDrop {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameShapeDidDrop:)]) {
-        [self.delegate maritrisGameShapeDidDrop:self];
-    }
-}
-
-- (void)notifyGameDidIncreaseScore {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameDidIncreaseScore:)]) {
-        [self.delegate maritrisGameDidIncreaseScore:self];
-    }
-}
-
-- (void)notifyGameDidLevelUp {
-    if ([self.delegate respondsToSelector:@selector(maritrisGameDidLevelUp:)]) {
-        [self.delegate maritrisGameDidLevelUp:self];
+- (void)notifyWithSelector:(SEL)selector {
+    if ([self.delegate respondsToSelector:selector]) {
+        [self.delegate performSelector:selector withObject:self];
     }
 }
 
 @end
+

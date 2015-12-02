@@ -23,8 +23,8 @@ typedef NS_ENUM(NSUInteger, EMIBlockColor) {
 @property (nonatomic, readonly, assign) EMIBlockColor   color;
 @property (nonatomic, readonly, copy)   NSString        *spriteName;
 @property (nonatomic, strong)           id              sprite;
-@property (nonatomic, assign)           NSUInteger      row;
-@property (nonatomic, assign)           NSUInteger      column;
+@property (nonatomic, assign)           NSInteger      row;
+@property (nonatomic, assign)           NSInteger      column;
 
 - (instancetype)initWithColumn:(NSUInteger)column row:(NSUInteger)row color:(EMIBlockColor)color;
 

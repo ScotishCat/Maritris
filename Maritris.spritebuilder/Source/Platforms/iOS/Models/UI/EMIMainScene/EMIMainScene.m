@@ -5,22 +5,27 @@
 #import "EMIBlockPosition.h"
 #import "EMIShape.h"
 
-static const CGFloat kEMIBlockSize = 20.0f;
-static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
+#import "EMIMacros.h"
+
+static const CGFloat        kEMIBlockSize                           = 15.0f;
+static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 @interface EMIMainScene () <EMIMaritrisGameDelegate>
-@property (nonatomic, readonly) EMIMaritrisGame     *gameLogic;
-@property (nonatomic, readonly) CCNode              *gameLayer;
-@property (nonatomic, readonly) CCNode              *shapeLayer;
-@property (nonatomic, readonly) CGPoint             layerPosition;
+@property (nonatomic, strong)   EMIMaritrisGame     *gameLogic;
+@property (nonatomic, strong)   CCNode              *gameLayer;
+@property (nonatomic, strong)   CCNode              *shapeLayer;
+@property (nonatomic, assign)   CGPoint             layerPosition;
 @property (nonatomic, assign)   NSTimeInterval      updateLengthMilliseconds;
 @property (nonatomic, copy)     NSDate              *lastUpdate;
-@property (nonatomic, readonly) NSMutableDictionary *textureChache;
-@property (nonatomic, assign)   CGPoint lastTouchLocation;
+@property (nonatomic, strong)   NSMutableDictionary *textureChache;
+@property (nonatomic, assign)   CGPoint             lastTouchLocation;
 
 @property (nonatomic, assign, getter=isDraggingInProgress) BOOL draggingInProgress;
 
 - (void)performGameUpdate;
+- (void)animateCollapsingLines:(NSArray *)removedLines
+                  fallenBlocks:(NSArray *)fallenBlocks
+                    completion:(dispatch_block_t)completion;
 
 @end
 
@@ -29,29 +34,24 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
-        _gameLogic = [EMIMaritrisGame new];
-        _gameLogic.delegate = self;
-        
-        _layerPosition = ccp(6.0f, -6.0f);
-        _gameLayer = [CCNode node];
-        _shapeLayer = [CCNode node];
-        _textureChache = [NSMutableDictionary dictionary];
+        self.gameLogic = [EMIMaritrisGame new];
+        self.gameLogic.delegate = self;
+        self.layerPosition = ccp(5.0f, -5.0f);
+        self.gameLayer = [CCNode node];
+        self.shapeLayer = [CCNode node];
+        self.textureChache = [NSMutableDictionary dictionary];
         self.userInteractionEnabled = YES;
         
-        
         dispatch_async( dispatch_get_main_queue(), ^{
-            
-            [self addChild:_gameLayer];
-            
+            [self addChild:self.gameLayer];
             CCNode *gameBoard = [CCNode node];
             gameBoard.contentSize = CGSizeMake(kEMIBlockSize * kEMIGameNumberOfColumns, kEMIBlockSize * kEMIGameNumberOfRows);
             gameBoard.anchorPoint = ccp(0, 1);
-            gameBoard.position = _layerPosition;
+            gameBoard.position = self.layerPosition;
             
-            _shapeLayer.position = _layerPosition;
-            [_shapeLayer addChild:gameBoard];
-            [_gameLayer addChild:_shapeLayer];
+            self.shapeLayer.position = self.layerPosition;
+            [self.shapeLayer addChild:gameBoard];
+            [self.gameLayer addChild:self.shapeLayer];
             
             [self.gameLogic startGame];
         });
@@ -81,15 +81,17 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 }
 
 #pragma mark -
+#pragma mark EMIMaritrisGameDelegate
 
 - (void)maritrisGameDidStart:(EMIMaritrisGame *)game {
     // TODO: Update labels etc.
     self.updateLengthMilliseconds = kEMIUpdateIntervalMillisecondsLevelOne;
     
     if (nil != game.nextShape && nil == [[game.nextShape.blocks firstObject] sprite]) {
-        __weak typeof(self) weakSelf = self;
+        EMIWeakify(self);
         [self addPreviewShapeToScene:self.gameLogic.nextShape completion:^{
-            [weakSelf nextShape];
+            EMIStrongifyAndReturnIfNil(self);
+            [self nextShape];
         }];
     } else {
         [self nextShape];
@@ -99,7 +101,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 - (void)maritrisGameDidEnd:(EMIMaritrisGame *)game {
     // TODO: Update labels etc.
     [self stopUpdates];
-    
     [self animateCollapsingLines:[game removeAllLines] fallenBlocks:@[] completion:^{
         [game startGame];
     }];
@@ -111,7 +112,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 
 - (void)maritrisGameShapeDidDrop:(EMIMaritrisGame *)game {
     [self stopUpdates];
-    
     [self redrawShape:game.currentShape completion:^{
         [game moveShapeDown];
     }];
@@ -131,42 +131,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     }];
 }
 
-- (void)animateCollapsingLines:(NSArray *)removedLines
-                  fallenBlocks:(NSArray *)fallenBlocks
-                    completion:(dispatch_block_t)completion
-{
-    NSTimeInterval longestDuration = 0.0;
-    
-    for (NSUInteger columnIndex = 0; columnIndex < [fallenBlocks count]; columnIndex++) {
-        NSArray *column = fallenBlocks[columnIndex];
-        for (NSUInteger blockIndex = 0; blockIndex < [column count]; blockIndex++) {
-            EMIBlock *block = column[blockIndex];
-            CGPoint newPosition = [self pointForColumn:block.column row:block.row];
-            CCNode *sprite = block.sprite;
-            NSTimeInterval delay = columnIndex * 0.05 + blockIndex * 0.05;
-            NSTimeInterval duration = ((([sprite position].y - newPosition.y) / kEMIBlockSize) * 0.1);
-            CCAction *moveAction = [CCActionMoveTo actionWithDuration:duration position:newPosition];
-            CCAction *sequence = [CCActionSequence actionWithArray:
-                                  @[[CCActionDelay actionWithDuration:delay], moveAction]];
-            [sprite runAction:sequence];
-            longestDuration = MAX(longestDuration, (duration + delay));
-        }
-    }
-    
-    for (NSArray *rowToRemove in removedLines) {
-        for (EMIBlock *block in rowToRemove) {
-            CCActionSequence *sequence = [CCActionSequence actionWithArray:
-                                          @[[CCActionFadeOut actionWithDuration:0.5], [CCActionRemove action]]];
-            [block.sprite runAction:sequence];
-        }
-    }
-    
-    [self runAction:[CCActionSequence actionWithArray:
-                     @[[CCActionDelay actionWithDuration:longestDuration],
-                       [CCActionCallBlock actionWithBlock:completion]]]];
-}
-
 #pragma mark -
+#pragma mark Private
 
 - (CGPoint)pointForColumn:(NSUInteger)column row:(NSUInteger)row {
     CGFloat x = floor(self.layerPosition.x + ((CGFloat)column  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
@@ -271,13 +237,47 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     [self.gameLogic moveShapeDown];
 }
 
+- (void)animateCollapsingLines:(NSArray *)removedLines
+                  fallenBlocks:(NSArray *)fallenBlocks
+                    completion:(dispatch_block_t)completion
+{
+    NSTimeInterval longestDuration = 0.0;
+    
+    for (NSUInteger columnIndex = 0; columnIndex < [fallenBlocks count]; columnIndex++) {
+        NSArray *column = fallenBlocks[columnIndex];
+        for (NSUInteger blockIndex = 0; blockIndex < [column count]; blockIndex++) {
+            EMIBlock *block = column[blockIndex];
+            CGPoint newPosition = [self pointForColumn:block.column row:block.row];
+            CCNode *sprite = block.sprite;
+            NSTimeInterval delay = columnIndex * 0.05 + blockIndex * 0.05;
+            NSTimeInterval duration = ((([sprite position].y - newPosition.y) / kEMIBlockSize) * 0.1);
+            CCAction *moveAction = [CCActionMoveTo actionWithDuration:duration position:newPosition];
+            CCAction *sequence = [CCActionSequence actionWithArray:
+                                  @[[CCActionDelay actionWithDuration:delay], moveAction]];
+            [sprite runAction:sequence];
+            longestDuration = MAX(longestDuration, (duration + delay));
+        }
+    }
+    
+    for (NSArray *rowToRemove in removedLines) {
+        for (EMIBlock *block in rowToRemove) {
+            CCActionSequence *sequence = [CCActionSequence actionWithArray:
+                                          @[[CCActionFadeOut actionWithDuration:0.5], [CCActionRemove action]]];
+            [block.sprite runAction:sequence];
+        }
+    }
+    
+    [self runAction:[CCActionSequence actionWithArray:
+                     @[[CCActionDelay actionWithDuration:longestDuration],
+                       [CCActionCallBlock actionWithBlock:completion]]]];
+}
+
 #pragma mark -
-#pragma mark Touches
+#pragma mark Touches Handler
 
 - (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
     CGPoint touchLocation = [touch locationInNode:self];
     CCLOG(@"Received a touch at location: %@", NSStringFromCGPoint(touchLocation));
-    
     self.lastTouchLocation = touchLocation;
 }
 
@@ -287,7 +287,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     CGFloat yOffset = currentLocation.y - self.lastTouchLocation.y;
     if (ABS(xOffset) > kEMIBlockSize) {
         self.draggingInProgress = YES;
-        
+    
         if (xOffset > 0) {
             [self.gameLogic moveShapeRight];
         } else {
