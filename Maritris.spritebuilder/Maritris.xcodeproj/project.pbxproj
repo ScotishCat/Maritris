@@ -70,7 +70,6 @@
 		B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896C180762440076A88C /* Default-Landscape~ipad.png */; };
 		B7378977180762440076A88C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		B7378978180762440076A88C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896E180762440076A88C /* Default@2x.png */; };
-		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
 		B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3317B978D7009739AE /* OpenGLES.framework */; };
 		B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -80,25 +79,26 @@
 		B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
-		D03A53D31C0A707900BD732F /* EMIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03A53D21C0A707900BD732F /* EMIAppDelegate.m */; };
-		D072C6061C0F88E500A14186 /* EMIMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D072C6051C0F88E500A14186 /* EMIMacros.m */; };
-		D080DCE91BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */; };
-		D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DCEC1BF622B200D4DA7C /* EMIBlock.m */; };
-		D080DD4F1C00DBD300D4DA7C /* EMIBlockPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */; };
-		D080DD6D1C00ECE800D4DA7C /* EMIShape+RandomCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD551C00ECE800D4DA7C /* EMIShape+RandomCreation.m */; };
-		D080DD6E1C00ECE800D4DA7C /* EMIShape.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD571C00ECE800D4DA7C /* EMIShape.m */; };
-		D080DD6F1C00ECE800D4DA7C /* EMIShapeI.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD5A1C00ECE800D4DA7C /* EMIShapeI.m */; };
-		D080DD701C00ECE800D4DA7C /* EMIShapeJ.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD5D1C00ECE800D4DA7C /* EMIShapeJ.m */; };
-		D080DD711C00ECE800D4DA7C /* EMIShapeL.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD601C00ECE800D4DA7C /* EMIShapeL.m */; };
-		D080DD721C00ECE800D4DA7C /* EMIShapeS.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD631C00ECE800D4DA7C /* EMIShapeS.m */; };
-		D080DD731C00ECE800D4DA7C /* EMIShapeSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD661C00ECE800D4DA7C /* EMIShapeSquare.m */; };
-		D080DD741C00ECE800D4DA7C /* EMIShapeT.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD691C00ECE800D4DA7C /* EMIShapeT.m */; };
-		D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */ = {isa = PBXBuildFile; fileRef = D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */; };
-		D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */ = {isa = PBXBuildFile; fileRef = D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */; };
-		D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB510C1C073E2400F7E553 /* EMIArray2D.m */; };
-		D0CB51121C0740FA00F7E553 /* EMIMainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51111C0740FA00F7E553 /* EMIMainScene.m */; };
-		D0CB51161C074EB700F7E553 /* EMIStartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51151C074EB700F7E553 /* EMIStartScene.m */; };
-		D0CB511A1C07548700F7E553 /* EMITransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB51191C07548700F7E553 /* EMITransitionManager.m */; };
+		D072D4FE1C0FB7E900A14186 /* EMIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4C41C0FB7E900A14186 /* EMIAppDelegate.m */; };
+		D072D4FF1C0FB7E900A14186 /* EMIMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4C71C0FB7E900A14186 /* EMIMacros.m */; };
+		D072D5001C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4CA1C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m */; };
+		D072D5021C0FB7E900A14186 /* EMIArray2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4CF1C0FB7E900A14186 /* EMIArray2D.m */; };
+		D072D5031C0FB7E900A14186 /* EMIBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4D21C0FB7E900A14186 /* EMIBlock.m */; };
+		D072D5041C0FB7E900A14186 /* EMIBlockPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4D51C0FB7E900A14186 /* EMIBlockPosition.m */; };
+		D072D5051C0FB7E900A14186 /* EMIMaritrisGame.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4D81C0FB7E900A14186 /* EMIMaritrisGame.m */; };
+		D072D5061C0FB7E900A14186 /* EMIShape+RandomCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4DC1C0FB7E900A14186 /* EMIShape+RandomCreation.m */; };
+		D072D5071C0FB7E900A14186 /* EMIShape.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4DE1C0FB7E900A14186 /* EMIShape.m */; };
+		D072D5081C0FB7E900A14186 /* EMIShapeI.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4E11C0FB7E900A14186 /* EMIShapeI.m */; };
+		D072D5091C0FB7E900A14186 /* EMIShapeJ.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4E41C0FB7E900A14186 /* EMIShapeJ.m */; };
+		D072D50A1C0FB7E900A14186 /* EMIShapeL.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4E71C0FB7E900A14186 /* EMIShapeL.m */; };
+		D072D50B1C0FB7E900A14186 /* EMIShapeS.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4EA1C0FB7E900A14186 /* EMIShapeS.m */; };
+		D072D50C1C0FB7E900A14186 /* EMIShapeSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4ED1C0FB7E900A14186 /* EMIShapeSquare.m */; };
+		D072D50D1C0FB7E900A14186 /* EMIShapeT.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4F01C0FB7E900A14186 /* EMIShapeT.m */; };
+		D072D50E1C0FB7E900A14186 /* EMIShapeZ.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4F31C0FB7E900A14186 /* EMIShapeZ.m */; };
+		D072D50F1C0FB7E900A14186 /* EMIMainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4F71C0FB7E900A14186 /* EMIMainScene.m */; };
+		D072D5101C0FB7E900A14186 /* EMIStartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4FA1C0FB7E900A14186 /* EMIStartScene.m */; };
+		D072D5111C0FB7E900A14186 /* EMITransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4FD1C0FB7E900A14186 /* EMITransitionManager.m */; };
+		D072D5131C0FB82200A14186 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5121C0FB82200A14186 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,7 +183,6 @@
 		B737896C180762440076A88C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Source/Resources/Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
 		B737896D180762440076A88C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Source/Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		B737896E180762440076A88C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Source/Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		B73789851807631A0076A88C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/iOS/main.m; sourceTree = SOURCE_ROOT; };
 		B73789861807631A0076A88C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = SOURCE_ROOT; };
 		B77F1B2E17B978D7009739AE /* Maritris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maritris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77F1B3117B978D7009739AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -195,44 +194,45 @@
 		B77F1B3D17B978D7009739AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B77F1B3F17B978D7009739AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EMIAppDelegate.h; path = Source/Platforms/iOS/EMIAppDelegate.h; sourceTree = "<group>"; };
-		D03A53D21C0A707900BD732F /* EMIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIAppDelegate.m; path = Source/Platforms/iOS/EMIAppDelegate.m; sourceTree = "<group>"; };
-		D072C6041C0F88E500A14186 /* EMIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMacros.h; sourceTree = "<group>"; };
-		D072C6051C0F88E500A14186 /* EMIMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMacros.m; sourceTree = "<group>"; };
-		D080DCE71BF5668700D4DA7C /* NSMutableArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+EMIExtensions.h"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.h"; sourceTree = "<group>"; };
-		D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+EMIExtensions.m"; path = "NSMutableArray+EMIExtensions/NSMutableArray+EMIExtensions.m"; sourceTree = "<group>"; };
-		D080DCEB1BF622B200D4DA7C /* EMIBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIBlock.h; path = EMIBlock/EMIBlock.h; sourceTree = "<group>"; };
-		D080DCEC1BF622B200D4DA7C /* EMIBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIBlock.m; path = EMIBlock/EMIBlock.m; sourceTree = "<group>"; };
-		D080DD4D1C00DBD300D4DA7C /* EMIBlockPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIBlockPosition.h; sourceTree = "<group>"; };
-		D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIBlockPosition.m; sourceTree = "<group>"; };
-		D080DD541C00ECE800D4DA7C /* EMIShape+RandomCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMIShape+RandomCreation.h"; sourceTree = "<group>"; };
-		D080DD551C00ECE800D4DA7C /* EMIShape+RandomCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMIShape+RandomCreation.m"; sourceTree = "<group>"; };
-		D080DD561C00ECE800D4DA7C /* EMIShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShape.h; sourceTree = "<group>"; };
-		D080DD571C00ECE800D4DA7C /* EMIShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShape.m; sourceTree = "<group>"; };
-		D080DD591C00ECE800D4DA7C /* EMIShapeI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeI.h; sourceTree = "<group>"; };
-		D080DD5A1C00ECE800D4DA7C /* EMIShapeI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeI.m; sourceTree = "<group>"; };
-		D080DD5C1C00ECE800D4DA7C /* EMIShapeJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeJ.h; sourceTree = "<group>"; };
-		D080DD5D1C00ECE800D4DA7C /* EMIShapeJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeJ.m; sourceTree = "<group>"; };
-		D080DD5F1C00ECE800D4DA7C /* EMIShapeL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeL.h; sourceTree = "<group>"; };
-		D080DD601C00ECE800D4DA7C /* EMIShapeL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeL.m; sourceTree = "<group>"; };
-		D080DD621C00ECE800D4DA7C /* EMIShapeS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeS.h; sourceTree = "<group>"; };
-		D080DD631C00ECE800D4DA7C /* EMIShapeS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeS.m; sourceTree = "<group>"; };
-		D080DD651C00ECE800D4DA7C /* EMIShapeSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeSquare.h; sourceTree = "<group>"; };
-		D080DD661C00ECE800D4DA7C /* EMIShapeSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeSquare.m; sourceTree = "<group>"; };
-		D080DD681C00ECE800D4DA7C /* EMIShapeT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeT.h; sourceTree = "<group>"; };
-		D080DD691C00ECE800D4DA7C /* EMIShapeT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeT.m; sourceTree = "<group>"; };
-		D080DD6B1C00ECE800D4DA7C /* EMIShapeZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeZ.h; sourceTree = "<group>"; };
-		D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeZ.m; sourceTree = "<group>"; };
-		D0950CAC1C07336500478EE5 /* EMIMaritrisGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMaritrisGame.h; sourceTree = "<group>"; };
-		D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisGame.m; sourceTree = "<group>"; };
-		D0CB510B1C073E2400F7E553 /* EMIArray2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArray2D.h; sourceTree = "<group>"; };
-		D0CB510C1C073E2400F7E553 /* EMIArray2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArray2D.m; sourceTree = "<group>"; };
-		D0CB51101C0740FA00F7E553 /* EMIMainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMainScene.h; sourceTree = "<group>"; };
-		D0CB51111C0740FA00F7E553 /* EMIMainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMainScene.m; sourceTree = "<group>"; };
-		D0CB51141C074EB700F7E553 /* EMIStartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMIStartScene.h; path = EMIStartScene/EMIStartScene.h; sourceTree = "<group>"; };
-		D0CB51151C074EB700F7E553 /* EMIStartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMIStartScene.m; path = EMIStartScene/EMIStartScene.m; sourceTree = "<group>"; };
-		D0CB51181C07548700F7E553 /* EMITransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMITransitionManager.h; path = EMITransitionManager/EMITransitionManager.h; sourceTree = "<group>"; };
-		D0CB51191C07548700F7E553 /* EMITransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMITransitionManager.m; path = EMITransitionManager/EMITransitionManager.m; sourceTree = "<group>"; };
+		D072D4C31C0FB7E900A14186 /* EMIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIAppDelegate.h; sourceTree = "<group>"; };
+		D072D4C41C0FB7E900A14186 /* EMIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIAppDelegate.m; sourceTree = "<group>"; };
+		D072D4C61C0FB7E900A14186 /* EMIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMacros.h; sourceTree = "<group>"; };
+		D072D4C71C0FB7E900A14186 /* EMIMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMacros.m; sourceTree = "<group>"; };
+		D072D4C91C0FB7E900A14186 /* NSMutableArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+EMIExtensions.h"; sourceTree = "<group>"; };
+		D072D4CA1C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D4CE1C0FB7E900A14186 /* EMIArray2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArray2D.h; sourceTree = "<group>"; };
+		D072D4CF1C0FB7E900A14186 /* EMIArray2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArray2D.m; sourceTree = "<group>"; };
+		D072D4D11C0FB7E900A14186 /* EMIBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIBlock.h; sourceTree = "<group>"; };
+		D072D4D21C0FB7E900A14186 /* EMIBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIBlock.m; sourceTree = "<group>"; };
+		D072D4D41C0FB7E900A14186 /* EMIBlockPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIBlockPosition.h; sourceTree = "<group>"; };
+		D072D4D51C0FB7E900A14186 /* EMIBlockPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIBlockPosition.m; sourceTree = "<group>"; };
+		D072D4D71C0FB7E900A14186 /* EMIMaritrisGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMaritrisGame.h; sourceTree = "<group>"; };
+		D072D4D81C0FB7E900A14186 /* EMIMaritrisGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisGame.m; sourceTree = "<group>"; };
+		D072D4DB1C0FB7E900A14186 /* EMIShape+RandomCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMIShape+RandomCreation.h"; sourceTree = "<group>"; };
+		D072D4DC1C0FB7E900A14186 /* EMIShape+RandomCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMIShape+RandomCreation.m"; sourceTree = "<group>"; };
+		D072D4DD1C0FB7E900A14186 /* EMIShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShape.h; sourceTree = "<group>"; };
+		D072D4DE1C0FB7E900A14186 /* EMIShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShape.m; sourceTree = "<group>"; };
+		D072D4E01C0FB7E900A14186 /* EMIShapeI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeI.h; sourceTree = "<group>"; };
+		D072D4E11C0FB7E900A14186 /* EMIShapeI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeI.m; sourceTree = "<group>"; };
+		D072D4E31C0FB7E900A14186 /* EMIShapeJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeJ.h; sourceTree = "<group>"; };
+		D072D4E41C0FB7E900A14186 /* EMIShapeJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeJ.m; sourceTree = "<group>"; };
+		D072D4E61C0FB7E900A14186 /* EMIShapeL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeL.h; sourceTree = "<group>"; };
+		D072D4E71C0FB7E900A14186 /* EMIShapeL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeL.m; sourceTree = "<group>"; };
+		D072D4E91C0FB7E900A14186 /* EMIShapeS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeS.h; sourceTree = "<group>"; };
+		D072D4EA1C0FB7E900A14186 /* EMIShapeS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeS.m; sourceTree = "<group>"; };
+		D072D4EC1C0FB7E900A14186 /* EMIShapeSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeSquare.h; sourceTree = "<group>"; };
+		D072D4ED1C0FB7E900A14186 /* EMIShapeSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeSquare.m; sourceTree = "<group>"; };
+		D072D4EF1C0FB7E900A14186 /* EMIShapeT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeT.h; sourceTree = "<group>"; };
+		D072D4F01C0FB7E900A14186 /* EMIShapeT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeT.m; sourceTree = "<group>"; };
+		D072D4F21C0FB7E900A14186 /* EMIShapeZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIShapeZ.h; sourceTree = "<group>"; };
+		D072D4F31C0FB7E900A14186 /* EMIShapeZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIShapeZ.m; sourceTree = "<group>"; };
+		D072D4F61C0FB7E900A14186 /* EMIMainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMainScene.h; sourceTree = "<group>"; };
+		D072D4F71C0FB7E900A14186 /* EMIMainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMainScene.m; sourceTree = "<group>"; };
+		D072D4F91C0FB7E900A14186 /* EMIStartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIStartScene.h; sourceTree = "<group>"; };
+		D072D4FA1C0FB7E900A14186 /* EMIStartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIStartScene.m; sourceTree = "<group>"; };
+		D072D4FC1C0FB7E900A14186 /* EMITransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMITransitionManager.h; sourceTree = "<group>"; };
+		D072D4FD1C0FB7E900A14186 /* EMITransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMITransitionManager.m; sourceTree = "<group>"; };
+		D072D5121C0FB82200A14186 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -335,23 +335,9 @@
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
 			isa = PBXGroup;
 			children = (
-				7A40362119DDF08C007B6E8F /* iOS */,
+				D072D4C21C0FB7E900A14186 /* iOS */,
 			);
 			name = Platforms;
-			sourceTree = "<group>";
-		};
-		7A40362119DDF08C007B6E8F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				D080DCE21BF3E70100D4DA7C /* Library */,
-				D072C6041C0F88E500A14186 /* EMIMacros.h */,
-				D072C6051C0F88E500A14186 /* EMIMacros.m */,
-				D080DCE11BF3E6F600D4DA7C /* UI */,
-				D080DCDF1BF3E6EE00D4DA7C /* Models */,
-				D03A53D11C0A706B00BD732F /* EMIAppDelegate.h */,
-				D03A53D21C0A707900BD732F /* EMIAppDelegate.m */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		7A40365D19DDF896007B6E8F /* Platforms */ = {
@@ -365,7 +351,7 @@
 		7A40366019DDF8A6007B6E8F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B73789851807631A0076A88C /* main.m */,
+				D072D5121C0FB82200A14186 /* main.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -500,198 +486,210 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D080DCDF1BF3E6EE00D4DA7C /* Models */ = {
+		D072D4C21C0FB7E900A14186 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB510A1C073E2400F7E553 /* EMIArray2D */,
-				D0950CAB1C07336500478EE5 /* EMIMaritrisGame */,
-				D080DCEA1BF6227000D4DA7C /* EMIBlock */,
-				D080DD4C1C00DBD300D4DA7C /* EMIBlockPosition */,
-				D080DD521C00ECE800D4DA7C /* EMIShape */,
+				D072D4C31C0FB7E900A14186 /* EMIAppDelegate.h */,
+				D072D4C41C0FB7E900A14186 /* EMIAppDelegate.m */,
+				D072D4C51C0FB7E900A14186 /* Library */,
+				D072D4CC1C0FB7E900A14186 /* Models */,
+				D072D4F41C0FB7E900A14186 /* UI */,
 			);
-			name = Models;
-			path = Source/Platforms/iOS/Models;
+			name = iOS;
+			path = Source/Platforms/iOS;
 			sourceTree = "<group>";
 		};
-		D080DCE11BF3E6F600D4DA7C /* UI */ = {
+		D072D4C51C0FB7E900A14186 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB51171C0753C300F7E553 /* EMITransitionManager */,
-				D0CB51131C074E7E00F7E553 /* EMIStartScene */,
-				D0CB510F1C0740FA00F7E553 /* EMIMainScene */,
+				D072D4C61C0FB7E900A14186 /* EMIMacros.h */,
+				D072D4C71C0FB7E900A14186 /* EMIMacros.m */,
+				D072D4C81C0FB7E900A14186 /* NSMutableArray+EMIExtensions */,
 			);
-			name = UI;
-			path = Source/Platforms/iOS/Models/UI;
+			path = Library;
 			sourceTree = "<group>";
 		};
-		D080DCE21BF3E70100D4DA7C /* Library */ = {
+		D072D4C81C0FB7E900A14186 /* NSMutableArray+EMIExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				D080DCE61BF5663600D4DA7C /* NSMutableArray+EMIExtensions */,
+				D072D4C91C0FB7E900A14186 /* NSMutableArray+EMIExtensions.h */,
+				D072D4CA1C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m */,
 			);
-			name = Library;
-			path = Source/Platforms/iOS/Models/Library;
+			path = "NSMutableArray+EMIExtensions";
 			sourceTree = "<group>";
 		};
-		D080DCE61BF5663600D4DA7C /* NSMutableArray+EMIExtensions */ = {
+		D072D4CC1C0FB7E900A14186 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D080DCE71BF5668700D4DA7C /* NSMutableArray+EMIExtensions.h */,
-				D080DCE81BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m */,
+				D072D4CD1C0FB7E900A14186 /* EMIArray2D */,
+				D072D4D01C0FB7E900A14186 /* EMIBlock */,
+				D072D4D31C0FB7E900A14186 /* EMIBlockPosition */,
+				D072D4D61C0FB7E900A14186 /* EMIMaritrisGame */,
+				D072D4D91C0FB7E900A14186 /* EMIShape */,
 			);
-			name = "NSMutableArray+EMIExtensions";
+			path = Models;
 			sourceTree = "<group>";
 		};
-		D080DCEA1BF6227000D4DA7C /* EMIBlock */ = {
+		D072D4CD1C0FB7E900A14186 /* EMIArray2D */ = {
 			isa = PBXGroup;
 			children = (
-				D080DCEB1BF622B200D4DA7C /* EMIBlock.h */,
-				D080DCEC1BF622B200D4DA7C /* EMIBlock.m */,
-			);
-			name = EMIBlock;
-			sourceTree = "<group>";
-		};
-		D080DD4C1C00DBD300D4DA7C /* EMIBlockPosition */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD4D1C00DBD300D4DA7C /* EMIBlockPosition.h */,
-				D080DD4E1C00DBD300D4DA7C /* EMIBlockPosition.m */,
-			);
-			path = EMIBlockPosition;
-			sourceTree = "<group>";
-		};
-		D080DD521C00ECE800D4DA7C /* EMIShape */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD531C00ECE800D4DA7C /* EMIShape+RandomCreation */,
-				D080DD561C00ECE800D4DA7C /* EMIShape.h */,
-				D080DD571C00ECE800D4DA7C /* EMIShape.m */,
-				D080DD581C00ECE800D4DA7C /* EMIShapeI */,
-				D080DD5B1C00ECE800D4DA7C /* EMIShapeJ */,
-				D080DD5E1C00ECE800D4DA7C /* EMIShapeL */,
-				D080DD611C00ECE800D4DA7C /* EMIShapeS */,
-				D080DD641C00ECE800D4DA7C /* EMIShapeSquare */,
-				D080DD671C00ECE800D4DA7C /* EMIShapeT */,
-				D080DD6A1C00ECE800D4DA7C /* EMIShapeZ */,
-			);
-			path = EMIShape;
-			sourceTree = "<group>";
-		};
-		D080DD531C00ECE800D4DA7C /* EMIShape+RandomCreation */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD541C00ECE800D4DA7C /* EMIShape+RandomCreation.h */,
-				D080DD551C00ECE800D4DA7C /* EMIShape+RandomCreation.m */,
-			);
-			path = "EMIShape+RandomCreation";
-			sourceTree = "<group>";
-		};
-		D080DD581C00ECE800D4DA7C /* EMIShapeI */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD591C00ECE800D4DA7C /* EMIShapeI.h */,
-				D080DD5A1C00ECE800D4DA7C /* EMIShapeI.m */,
-			);
-			path = EMIShapeI;
-			sourceTree = "<group>";
-		};
-		D080DD5B1C00ECE800D4DA7C /* EMIShapeJ */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD5C1C00ECE800D4DA7C /* EMIShapeJ.h */,
-				D080DD5D1C00ECE800D4DA7C /* EMIShapeJ.m */,
-			);
-			path = EMIShapeJ;
-			sourceTree = "<group>";
-		};
-		D080DD5E1C00ECE800D4DA7C /* EMIShapeL */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD5F1C00ECE800D4DA7C /* EMIShapeL.h */,
-				D080DD601C00ECE800D4DA7C /* EMIShapeL.m */,
-			);
-			path = EMIShapeL;
-			sourceTree = "<group>";
-		};
-		D080DD611C00ECE800D4DA7C /* EMIShapeS */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD621C00ECE800D4DA7C /* EMIShapeS.h */,
-				D080DD631C00ECE800D4DA7C /* EMIShapeS.m */,
-			);
-			path = EMIShapeS;
-			sourceTree = "<group>";
-		};
-		D080DD641C00ECE800D4DA7C /* EMIShapeSquare */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD651C00ECE800D4DA7C /* EMIShapeSquare.h */,
-				D080DD661C00ECE800D4DA7C /* EMIShapeSquare.m */,
-			);
-			path = EMIShapeSquare;
-			sourceTree = "<group>";
-		};
-		D080DD671C00ECE800D4DA7C /* EMIShapeT */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD681C00ECE800D4DA7C /* EMIShapeT.h */,
-				D080DD691C00ECE800D4DA7C /* EMIShapeT.m */,
-			);
-			path = EMIShapeT;
-			sourceTree = "<group>";
-		};
-		D080DD6A1C00ECE800D4DA7C /* EMIShapeZ */ = {
-			isa = PBXGroup;
-			children = (
-				D080DD6B1C00ECE800D4DA7C /* EMIShapeZ.h */,
-				D080DD6C1C00ECE800D4DA7C /* EMIShapeZ.m */,
-			);
-			path = EMIShapeZ;
-			sourceTree = "<group>";
-		};
-		D0950CAB1C07336500478EE5 /* EMIMaritrisGame */ = {
-			isa = PBXGroup;
-			children = (
-				D0950CAC1C07336500478EE5 /* EMIMaritrisGame.h */,
-				D0950CAD1C07336500478EE5 /* EMIMaritrisGame.m */,
-			);
-			path = EMIMaritrisGame;
-			sourceTree = "<group>";
-		};
-		D0CB510A1C073E2400F7E553 /* EMIArray2D */ = {
-			isa = PBXGroup;
-			children = (
-				D0CB510B1C073E2400F7E553 /* EMIArray2D.h */,
-				D0CB510C1C073E2400F7E553 /* EMIArray2D.m */,
+				D072D4CE1C0FB7E900A14186 /* EMIArray2D.h */,
+				D072D4CF1C0FB7E900A14186 /* EMIArray2D.m */,
 			);
 			path = EMIArray2D;
 			sourceTree = "<group>";
 		};
-		D0CB510F1C0740FA00F7E553 /* EMIMainScene */ = {
+		D072D4D01C0FB7E900A14186 /* EMIBlock */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB51101C0740FA00F7E553 /* EMIMainScene.h */,
-				D0CB51111C0740FA00F7E553 /* EMIMainScene.m */,
+				D072D4D11C0FB7E900A14186 /* EMIBlock.h */,
+				D072D4D21C0FB7E900A14186 /* EMIBlock.m */,
+			);
+			path = EMIBlock;
+			sourceTree = "<group>";
+		};
+		D072D4D31C0FB7E900A14186 /* EMIBlockPosition */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4D41C0FB7E900A14186 /* EMIBlockPosition.h */,
+				D072D4D51C0FB7E900A14186 /* EMIBlockPosition.m */,
+			);
+			path = EMIBlockPosition;
+			sourceTree = "<group>";
+		};
+		D072D4D61C0FB7E900A14186 /* EMIMaritrisGame */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4D71C0FB7E900A14186 /* EMIMaritrisGame.h */,
+				D072D4D81C0FB7E900A14186 /* EMIMaritrisGame.m */,
+			);
+			path = EMIMaritrisGame;
+			sourceTree = "<group>";
+		};
+		D072D4D91C0FB7E900A14186 /* EMIShape */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4DA1C0FB7E900A14186 /* EMIShape+RandomCreation */,
+				D072D4DD1C0FB7E900A14186 /* EMIShape.h */,
+				D072D4DE1C0FB7E900A14186 /* EMIShape.m */,
+				D072D4DF1C0FB7E900A14186 /* EMIShapeI */,
+				D072D4E21C0FB7E900A14186 /* EMIShapeJ */,
+				D072D4E51C0FB7E900A14186 /* EMIShapeL */,
+				D072D4E81C0FB7E900A14186 /* EMIShapeS */,
+				D072D4EB1C0FB7E900A14186 /* EMIShapeSquare */,
+				D072D4EE1C0FB7E900A14186 /* EMIShapeT */,
+				D072D4F11C0FB7E900A14186 /* EMIShapeZ */,
+			);
+			path = EMIShape;
+			sourceTree = "<group>";
+		};
+		D072D4DA1C0FB7E900A14186 /* EMIShape+RandomCreation */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4DB1C0FB7E900A14186 /* EMIShape+RandomCreation.h */,
+				D072D4DC1C0FB7E900A14186 /* EMIShape+RandomCreation.m */,
+			);
+			path = "EMIShape+RandomCreation";
+			sourceTree = "<group>";
+		};
+		D072D4DF1C0FB7E900A14186 /* EMIShapeI */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4E01C0FB7E900A14186 /* EMIShapeI.h */,
+				D072D4E11C0FB7E900A14186 /* EMIShapeI.m */,
+			);
+			path = EMIShapeI;
+			sourceTree = "<group>";
+		};
+		D072D4E21C0FB7E900A14186 /* EMIShapeJ */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4E31C0FB7E900A14186 /* EMIShapeJ.h */,
+				D072D4E41C0FB7E900A14186 /* EMIShapeJ.m */,
+			);
+			path = EMIShapeJ;
+			sourceTree = "<group>";
+		};
+		D072D4E51C0FB7E900A14186 /* EMIShapeL */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4E61C0FB7E900A14186 /* EMIShapeL.h */,
+				D072D4E71C0FB7E900A14186 /* EMIShapeL.m */,
+			);
+			path = EMIShapeL;
+			sourceTree = "<group>";
+		};
+		D072D4E81C0FB7E900A14186 /* EMIShapeS */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4E91C0FB7E900A14186 /* EMIShapeS.h */,
+				D072D4EA1C0FB7E900A14186 /* EMIShapeS.m */,
+			);
+			path = EMIShapeS;
+			sourceTree = "<group>";
+		};
+		D072D4EB1C0FB7E900A14186 /* EMIShapeSquare */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4EC1C0FB7E900A14186 /* EMIShapeSquare.h */,
+				D072D4ED1C0FB7E900A14186 /* EMIShapeSquare.m */,
+			);
+			path = EMIShapeSquare;
+			sourceTree = "<group>";
+		};
+		D072D4EE1C0FB7E900A14186 /* EMIShapeT */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4EF1C0FB7E900A14186 /* EMIShapeT.h */,
+				D072D4F01C0FB7E900A14186 /* EMIShapeT.m */,
+			);
+			path = EMIShapeT;
+			sourceTree = "<group>";
+		};
+		D072D4F11C0FB7E900A14186 /* EMIShapeZ */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4F21C0FB7E900A14186 /* EMIShapeZ.h */,
+				D072D4F31C0FB7E900A14186 /* EMIShapeZ.m */,
+			);
+			path = EMIShapeZ;
+			sourceTree = "<group>";
+		};
+		D072D4F41C0FB7E900A14186 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4F51C0FB7E900A14186 /* EMIMainScene */,
+				D072D4F81C0FB7E900A14186 /* EMIStartScene */,
+				D072D4FB1C0FB7E900A14186 /* EMITransitionManager */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D072D4F51C0FB7E900A14186 /* EMIMainScene */ = {
+			isa = PBXGroup;
+			children = (
+				D072D4F61C0FB7E900A14186 /* EMIMainScene.h */,
+				D072D4F71C0FB7E900A14186 /* EMIMainScene.m */,
 			);
 			path = EMIMainScene;
 			sourceTree = "<group>";
 		};
-		D0CB51131C074E7E00F7E553 /* EMIStartScene */ = {
+		D072D4F81C0FB7E900A14186 /* EMIStartScene */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB51141C074EB700F7E553 /* EMIStartScene.h */,
-				D0CB51151C074EB700F7E553 /* EMIStartScene.m */,
+				D072D4F91C0FB7E900A14186 /* EMIStartScene.h */,
+				D072D4FA1C0FB7E900A14186 /* EMIStartScene.m */,
 			);
-			name = EMIStartScene;
+			path = EMIStartScene;
 			sourceTree = "<group>";
 		};
-		D0CB51171C0753C300F7E553 /* EMITransitionManager */ = {
+		D072D4FB1C0FB7E900A14186 /* EMITransitionManager */ = {
 			isa = PBXGroup;
 			children = (
-				D0CB51181C07548700F7E553 /* EMITransitionManager.h */,
-				D0CB51191C07548700F7E553 /* EMITransitionManager.m */,
+				D072D4FC1C0FB7E900A14186 /* EMITransitionManager.h */,
+				D072D4FD1C0FB7E900A14186 /* EMITransitionManager.m */,
 			);
-			name = EMITransitionManager;
+			path = EMITransitionManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -964,26 +962,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0CB51121C0740FA00F7E553 /* EMIMainScene.m in Sources */,
-				D0CB51161C074EB700F7E553 /* EMIStartScene.m in Sources */,
-				D0CB510D1C073E2400F7E553 /* EMIArray2D.m in Sources */,
-				D03A53D31C0A707900BD732F /* EMIAppDelegate.m in Sources */,
-				D0950CAE1C07336500478EE5 /* EMIMaritrisGame.m in Sources */,
-				D080DD721C00ECE800D4DA7C /* EMIShapeS.m in Sources */,
-				D080DD701C00ECE800D4DA7C /* EMIShapeJ.m in Sources */,
-				D080DD4F1C00DBD300D4DA7C /* EMIBlockPosition.m in Sources */,
-				D080DD6D1C00ECE800D4DA7C /* EMIShape+RandomCreation.m in Sources */,
-				D080DD6E1C00ECE800D4DA7C /* EMIShape.m in Sources */,
-				D080DD6F1C00ECE800D4DA7C /* EMIShapeI.m in Sources */,
-				D080DCE91BF5668700D4DA7C /* NSMutableArray+EMIExtensions.m in Sources */,
-				D080DD711C00ECE800D4DA7C /* EMIShapeL.m in Sources */,
-				B73789871807631A0076A88C /* main.m in Sources */,
-				D0CB511A1C07548700F7E553 /* EMITransitionManager.m in Sources */,
-				D080DD741C00ECE800D4DA7C /* EMIShapeT.m in Sources */,
-				D080DD731C00ECE800D4DA7C /* EMIShapeSquare.m in Sources */,
-				D080DD751C00ECE800D4DA7C /* EMIShapeZ.m in Sources */,
-				D072C6061C0F88E500A14186 /* EMIMacros.m in Sources */,
-				D080DCED1BF622B200D4DA7C /* EMIBlock.m in Sources */,
+				D072D5111C0FB7E900A14186 /* EMITransitionManager.m in Sources */,
+				D072D5041C0FB7E900A14186 /* EMIBlockPosition.m in Sources */,
+				D072D5091C0FB7E900A14186 /* EMIShapeJ.m in Sources */,
+				D072D50F1C0FB7E900A14186 /* EMIMainScene.m in Sources */,
+				D072D50B1C0FB7E900A14186 /* EMIShapeS.m in Sources */,
+				D072D5021C0FB7E900A14186 /* EMIArray2D.m in Sources */,
+				D072D50A1C0FB7E900A14186 /* EMIShapeL.m in Sources */,
+				D072D5081C0FB7E900A14186 /* EMIShapeI.m in Sources */,
+				D072D5061C0FB7E900A14186 /* EMIShape+RandomCreation.m in Sources */,
+				D072D50D1C0FB7E900A14186 /* EMIShapeT.m in Sources */,
+				D072D50C1C0FB7E900A14186 /* EMIShapeSquare.m in Sources */,
+				D072D5051C0FB7E900A14186 /* EMIMaritrisGame.m in Sources */,
+				D072D5071C0FB7E900A14186 /* EMIShape.m in Sources */,
+				D072D50E1C0FB7E900A14186 /* EMIShapeZ.m in Sources */,
+				D072D5031C0FB7E900A14186 /* EMIBlock.m in Sources */,
+				D072D4FE1C0FB7E900A14186 /* EMIAppDelegate.m in Sources */,
+				D072D5001C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m in Sources */,
+				D072D5101C0FB7E900A14186 /* EMIStartScene.m in Sources */,
+				D072D4FF1C0FB7E900A14186 /* EMIMacros.m in Sources */,
+				D072D5131C0FB82200A14186 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

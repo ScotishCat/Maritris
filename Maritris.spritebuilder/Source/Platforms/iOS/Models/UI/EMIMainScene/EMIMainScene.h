@@ -1,3 +1,0 @@
-@interface EMIMainScene : CCNode
-
-@end

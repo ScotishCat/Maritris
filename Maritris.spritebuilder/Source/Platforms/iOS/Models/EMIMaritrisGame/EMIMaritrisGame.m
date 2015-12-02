@@ -48,6 +48,10 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 - (void)settleCurrentShape;
 - (void)notifyWithSelector:(SEL)selector;
 
+- (NSArray *)collectRemovedLines;
+- (NSArray *)collectFallenBlocksWithRemovedLines:(NSArray *)removedLines;
+- (void)updateScores:(NSArray *)removedLines;
+
 @end
 
 @implementation EMIMaritrisGame
@@ -232,29 +236,7 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 }
 
 - (void)removeCompletedLinesWithCompletion:(EMIRemoveCompletedLinesCompletion)completion {
-    EMIArray2D *gridOfBlocks = self.blocksGrid;
-
-    NSMutableArray *removedLines = [NSMutableArray array];
-    // Iterate over the each row in the game and check if it has any blocks filled
-    for (NSInteger rowIndex = kEMIGameNumberOfRows - 1; rowIndex > 0; rowIndex--) {
-        NSMutableArray *rowOfBlocks = [NSMutableArray arrayWithCapacity:kEMIGameNumberOfColumns];
-        for (NSUInteger columnIndex = 0; columnIndex < kEMIGameNumberOfColumns; columnIndex++) {
-            id block = [gridOfBlocks objectAtColumn:columnIndex row:rowIndex];
-            if (block == [NSNull null]) {
-                // no block at this place, so row is not full - continue
-                continue;
-            }
-            [rowOfBlocks addObject:block];
-        }
-        if ([rowOfBlocks count] == kEMIGameNumberOfColumns) {
-            // We have a full row filled - add it to results array
-            [removedLines addObject:rowOfBlocks];
-            // Clear the removed blocks from the grid
-            for (EMIBlock *block in rowOfBlocks) {
-                [gridOfBlocks setObject:[NSNull null] atColumn:block.column row:block.row];
-            }
-        }
-    }
+    NSArray *removedLines = [self collectRemovedLines];
     
     // If nothing was removed, exit method
     if (0 == [removedLines count]) {
@@ -264,50 +246,9 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
         return;
     }
     
-    // Update scores
-    NSUInteger earnedPoints = [removedLines count] * kEMIPointsPerLine * self.gameLevel;
-    self.score += earnedPoints;
-    [self notifyWithSelector:@selector(maritrisGameDidIncreaseScore:)];
-    if (self.score >= self.gameLevel * kEMIGameLevelThreshold) {
-        self.gameLevel += 1;
-        [self notifyWithSelector:@selector(maritrisGameDidLevelUp:)];
-    }
+    [self updateScores:removedLines];
     
-    NSMutableArray *fallenBlocks = [NSMutableArray array];
-    
-    // Now adjust all blocks that are above our removed lines and should fall down.
-    // Start from the left-most column.
-    for (NSUInteger columnIndex = 0; columnIndex < kEMIGameNumberOfColumns; columnIndex++) {
-    
-        NSMutableArray *fallenBlocksArray = [NSMutableArray array];
-        // Get the index of the first row above the first removed line
-        NSUInteger rowIndex = [[removedLines[0] objectAtIndex:0] row] - 1;
-        // And iterate upwards to find the closest filled block
-        for (; rowIndex > 0; rowIndex--) {
-            EMIBlock *block = [gridOfBlocks objectAtColumn:columnIndex row:rowIndex];
-            if ([block isKindOfClass:[NSNull class]]) {
-                // This position is empty, skip it
-                continue;
-            }
-            
-            // Find the next position of the row - how far down we should move it
-            NSUInteger newRow = rowIndex;
-            while (newRow < kEMIGameNumberOfRows - 1 && [NSNull null] == [gridOfBlocks objectAtColumn:columnIndex row:newRow + 1]) {
-                newRow++;
-            }
-            
-            // Adjust block's row (move it down as needed)
-            block.row = newRow;
-            // Mark old position empty on the grid
-            [gridOfBlocks setObject:[NSNull null] atColumn:columnIndex row:rowIndex];
-            // Mark new position filled
-            [gridOfBlocks setObject:block atColumn:columnIndex row:newRow];
-            [fallenBlocksArray addObject:block];
-        }
-        if ([fallenBlocksArray count] > 0) {
-            [fallenBlocks addObject:fallenBlocksArray];
-        }
-    }
+    NSArray *fallenBlocks = [self collectFallenBlocksWithRemovedLines:removedLines];
     
     if (completion) {
         completion(removedLines, fallenBlocks);
@@ -361,6 +302,85 @@ static const NSUInteger kEMIGameStartRowPosition = 2;
 - (void)notifyWithSelector:(SEL)selector {
     if ([self.delegate respondsToSelector:selector]) {
         [self.delegate performSelector:selector withObject:self];
+    }
+}
+
+- (NSArray *)collectRemovedLines {
+    EMIArray2D *gridOfBlocks = self.blocksGrid;
+    NSMutableArray *removedLines = [NSMutableArray array];
+    
+    // Iterate over the each row in the game and check if it has any blocks filled
+    for (NSInteger rowIndex = kEMIGameNumberOfRows - 1; rowIndex > 0; rowIndex--) {
+        NSMutableArray *rowOfBlocks = [NSMutableArray arrayWithCapacity:kEMIGameNumberOfColumns];
+        for (NSUInteger columnIndex = 0; columnIndex < kEMIGameNumberOfColumns; columnIndex++) {
+            id block = [gridOfBlocks objectAtColumn:columnIndex row:rowIndex];
+            if (block == [NSNull null]) {
+                // no block at this place, so row is not full - continue
+                continue;
+            }
+            [rowOfBlocks addObject:block];
+        }
+        if ([rowOfBlocks count] == kEMIGameNumberOfColumns) {
+            // We have a full row filled - add it to results array
+            [removedLines addObject:rowOfBlocks];
+            // Clear the removed blocks from the grid
+            for (EMIBlock *block in rowOfBlocks) {
+                [gridOfBlocks setObject:[NSNull null] atColumn:block.column row:block.row];
+            }
+        }
+    }
+    
+    return removedLines;
+}
+
+- (NSArray *)collectFallenBlocksWithRemovedLines:(NSArray *)removedLines {
+    EMIArray2D *gridOfBlocks = self.blocksGrid;
+    NSMutableArray *fallenBlocks = [NSMutableArray array];
+    
+    // Now adjust all blocks that are above our removed lines and should fall down.
+    // Start from the left-most column.
+    for (NSUInteger columnIndex = 0; columnIndex < kEMIGameNumberOfColumns; columnIndex++) {
+    
+        NSMutableArray *fallenBlocksArray = [NSMutableArray array];
+        // Get the index of the first row above the first removed line
+        NSUInteger rowIndex = [[removedLines[0] objectAtIndex:0] row] - 1;
+        // And iterate upwards to find the closest filled block
+        for (; rowIndex > 0; rowIndex--) {
+            EMIBlock *block = [gridOfBlocks objectAtColumn:columnIndex row:rowIndex];
+            if ([block isKindOfClass:[NSNull class]]) {
+                // This position is empty, skip it
+                continue;
+            }
+            
+            // Find the next position of the row - how far down we should move it
+            NSUInteger newRow = rowIndex;
+            while (newRow < kEMIGameNumberOfRows - 1 && [NSNull null] == [gridOfBlocks objectAtColumn:columnIndex row:newRow + 1]) {
+                newRow++;
+            }
+            
+            // Adjust block's row (move it down as needed)
+            block.row = newRow;
+            // Mark old position empty on the grid
+            [gridOfBlocks setObject:[NSNull null] atColumn:columnIndex row:rowIndex];
+            // Mark new position filled
+            [gridOfBlocks setObject:block atColumn:columnIndex row:newRow];
+            [fallenBlocksArray addObject:block];
+        }
+        if ([fallenBlocksArray count] > 0) {
+            [fallenBlocks addObject:fallenBlocksArray];
+        }
+    }
+    
+    return fallenBlocks;
+}
+
+- (void)updateScores:(NSArray *)removedLines {
+    NSUInteger earnedPoints = [removedLines count] * kEMIPointsPerLine * self.gameLevel;
+    self.score += earnedPoints;
+    [self notifyWithSelector:@selector(maritrisGameDidIncreaseScore:)];
+    if (self.score >= self.gameLevel * kEMIGameLevelThreshold) {
+        self.gameLevel += 1;
+        [self notifyWithSelector:@selector(maritrisGameDidLevelUp:)];
     }
 }
 
