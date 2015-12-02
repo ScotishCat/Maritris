@@ -6,23 +6,22 @@
 #import "EMIShape.h"
 
 static const CGFloat kEMIBlockSize = 20.0f;
-static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
+static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 500.0;
 
 @interface EMIMainScene () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, readonly) EMIMaritrisGame *gameLogic;
 
-@property (nonatomic, readonly) CCNode *gameLayer;
-@property (nonatomic, readonly) CCNode *shapeLayer;
+@property (nonatomic, readonly) CCNode  *gameLayer;
+@property (nonatomic, readonly) CCNode  *shapeLayer;
 @property (nonatomic, readonly) CGPoint layerPosition;
 
-@property (nonatomic, assign) NSTimeInterval updateLengthMilliseconds;
-
-@property (nonatomic, copy) NSDate *lastUpdate;
+@property (nonatomic, assign)   NSTimeInterval  updateLengthMilliseconds;
+@property (nonatomic, copy)     NSDate          *lastUpdate;
 
 @property (nonatomic, readonly) NSMutableDictionary *textureChache;
+@property (nonatomic, assign)   CGPoint             lastPanLocation;
 
-@property (nonatomic, assign) CGPoint lastPanLocation;
 @property (nonatomic, assign, getter=isDraggingInProgress) BOOL draggingInProgress;
 
 @property (nonatomic, weak) UIView *view;
@@ -109,7 +108,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 #pragma mark -
 
 - (void)maritrisGameDidStart:(EMIMaritrisGame *)game {
-
     // TODO: Update labels etc.
     self.updateLengthMilliseconds = kEMIUpdateIntervalMillisecondsLevelOne;
     
@@ -124,9 +122,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 }
 
 - (void)maritrisGameDidEnd:(EMIMaritrisGame *)game {
-
     // TODO: Update labels etc.
-    
     [self stopUpdates];
     
     [self animateCollapsingLines:[game removeAllLines] fallenBlocks:@[] completion:^{
@@ -310,6 +306,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 
 #pragma mark -
 #pragma mark Touches
+
 - (void)handleTapGesture:(UIPanGestureRecognizer*)aPanGestureRecognizer {
     NSLog(@"Did Tap!");
     [self.gameLogic rotateShape];
@@ -320,7 +317,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     [self.gameLogic dropShape];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)                                gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
 //    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]
 //        && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
@@ -335,7 +333,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)                gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]) {
         if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
@@ -351,7 +350,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer*)aSender {
-    
     CGPoint currentPoint = [aSender translationInView:aSender.view];
     if (currentPoint.y != 0) {
         currentPoint.y *= -1;
@@ -372,6 +370,5 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne = 600.0;
         self.lastPanLocation = currentPoint;
     }
 }
-
 
 @end
