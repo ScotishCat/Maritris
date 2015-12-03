@@ -16,7 +16,7 @@
 #import "EMIArray2D.h"
 
 static const NSUInteger kEMIPointsPerLine = 25;
-static const NSUInteger kEMIGameLevelThreshold = 1000;
+static const NSUInteger kEMIGameLevelThreshold = 500;
 
 const NSUInteger kEMIGameNumberOfColumns = 13;
 const NSUInteger kEMIGameNumberOfRows = 35;

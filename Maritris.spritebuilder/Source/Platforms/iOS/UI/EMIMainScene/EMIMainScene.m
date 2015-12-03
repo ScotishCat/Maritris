@@ -20,8 +20,10 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 @property (nonatomic, copy)     NSDate              *lastUpdate;
 @property (nonatomic, strong)   NSMutableDictionary *textureChache;
 @property (nonatomic, assign)   CGPoint             lastTouchLocation;
-
 @property (nonatomic, assign) 	CGPoint 			lastPanLocation;
+@property (nonatomic, strong)   CCLabelTTF          *scoreLabel;
+@property (nonatomic, strong)   CCLabelTTF          *levelLabel;
+
 @property (nonatomic, assign, getter=isDraggingInProgress) BOOL draggingInProgress;
 
 
@@ -47,6 +49,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
         
         dispatch_async( dispatch_get_main_queue(), ^{
             [self addChild:self.gameLayer];
+            self.scoreLabel.string = @"0";
+            self.levelLabel.string = @"1";
             
             CCNode *gameBoard = [CCNode node];
             gameBoard.contentSize = CGSizeMake(kEMIBlockSize * kEMIGameNumberOfColumns, kEMIBlockSize * kEMIGameNumberOfRows);
@@ -66,7 +70,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
             tapGestureRecognizer.delegate = self;
             [view addGestureRecognizer:tapGestureRecognizer];
 
-            UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+            UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                                action:@selector(handlePanGesture:)];
             panGestureRecognizer.delegate = self;
             [view addGestureRecognizer:panGestureRecognizer];
 
@@ -155,6 +160,19 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
             [self nextShape];
         }
     }];
+}
+
+- (void)maritrisGameDidIncreaseScore:(EMIMaritrisGame *)game {
+    self.scoreLabel.string = [NSString stringWithFormat:@"%@", @(game.score)];
+}
+
+- (void)maritrisGameDidLevelUp:(EMIMaritrisGame *)game {
+    self.levelLabel.string = [NSString stringWithFormat:@"%@", @(game.gameLevel)];
+    if (self.updateLengthMilliseconds >= 100) {
+        self.updateLengthMilliseconds -= 100;
+    } else if (self.updateLengthMilliseconds > 50) {
+        self.updateLengthMilliseconds -= 50;
+    }
 }
 
 #pragma mark -
