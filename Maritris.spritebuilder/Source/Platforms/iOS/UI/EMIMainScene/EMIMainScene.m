@@ -24,6 +24,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 @property (nonatomic, strong)   CCLabelTTF          *scoreLabel;
 @property (nonatomic, strong)   CCLabelTTF          *levelLabel;
 
+@property (nonatomic, assign, getter=isUpdating) BOOL updating;
+
 @property (nonatomic, assign, getter=isDraggingInProgress) BOOL draggingInProgress;
 
 
@@ -136,7 +138,12 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 }
 
 - (void)maritrisGameShapeDidMove:(EMIMaritrisGame *)game {
-    [self redrawShape:game.currentShape completion:nil];
+    if (!self.isUpdating) {
+        self.updating = YES;
+        [self redrawShape:game.currentShape completion:^{
+            self.updating = NO;
+        }];
+    }
 }
 
 - (void)maritrisGameShapeDidDrop:(EMIMaritrisGame *)game {
@@ -205,7 +212,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 }
 
 - (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion {
-    const NSTimeInterval animationDuration = 0.03;
+    const NSTimeInterval animationDuration = 0.05;
     for (EMIBlock *block in shape.blocks) {
         id sprite = block.sprite;
         NSInteger column = block.column;
@@ -376,7 +383,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
         CGFloat velocity = [aSender velocityInView:aSender.view].x;
         NSLog(@"velocity: %@", @(velocity));
         if (ABS(currentPoint.x - self.lastPanLocation.x) > kEMIBlockSize
-            && (ABS(velocity) < 600.0f)) {
+            /*&& (ABS(velocity) < 600.0f)*/) {
             NSLog(@"Did Pan!");
             if (velocity > 0.0f) {
                 [self.gameLogic moveShapeRight];
