@@ -8,9 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-#import "EMIStartScene.h"
-
-@interface EMITransitionManager : NSObject <EMIStartSceneDelegate>
+@interface EMITransitionManager : NSObject
 @property (nonatomic, strong)   CCNavigationController  *navController;
+
++ (id)sharedTransitionManager;
+
+// The new scene will be executed, the previous scene remains in memory.
+// ONLY call it if there is already a running scene.
+- (void)showNextScene:(CCScene *)scene;
+
+// Replaces the running scene, with the last scene pushed to the stack
+- (void)showPreviousScene;
+
+// Pops out all scenes from the queue until the root scene in the queue
+- (void)showRootScene;
+
+// the new ViewController will be executed
+- (void)pushNextViewController:(UIViewController *)controller;
 
 @end

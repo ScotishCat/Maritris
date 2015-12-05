@@ -11,16 +11,32 @@
 @implementation EMITransitionManager
 
 #pragma mark -
-#pragma mark EMIStartSceneDelegate
+#pragma mark Class Methods
 
-- (void)startSceneDidRequestLeaderboard:(EMIStartScene *)startScene {
-    UIViewController *controller = nil;
-    [self.navController pushViewController:controller animated:YES];
++ (id)sharedTransitionManager {
+    static EMITransitionManager *__transitionManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __transitionManager = [[EMITransitionManager alloc] init];
+    });
+    
+    return __transitionManager;
 }
 
-- (void)startSceneDidRequestPlayScene:(EMIStartScene *)startScene {
-    CCScene *scene = [CCBReader loadAsScene:@"EMIMainScene"];
+- (void)showNextScene:(CCScene *)scene {
     [[CCDirector sharedDirector] pushScene:scene withTransition:[CCTransition transitionCrossFadeWithDuration:0.5f]];
+}
+
+- (void)showPreviousScene {
+    [[CCDirector sharedDirector] popSceneWithTransition:[CCTransition transitionCrossFadeWithDuration:0.5f]];
+}
+
+- (void)showRootScene {
+    [[CCDirector sharedDirector] popToRootSceneWithTransition:[CCTransition transitionCrossFadeWithDuration:0.5f]];
+}
+
+- (void)pushNextViewController:(UIViewController *)controller {
+    [self.navController pushViewController:controller animated:YES];
 }
 
 @end

@@ -67,8 +67,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
             self.view = view;
             view.multipleTouchEnabled = NO;
             
-            UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                initWithTarget:self action:@selector(handleTapGesture:)];
+            UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                                action:@selector(handleTapGesture:)];
             tapGestureRecognizer.delegate = self;
             [view addGestureRecognizer:tapGestureRecognizer];
 
@@ -77,11 +77,10 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
             panGestureRecognizer.delegate = self;
             [view addGestureRecognizer:panGestureRecognizer];
 
-            UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
-                initWithTarget:self action:@selector(handleSwipeGesture:)];
+            UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                         action:@selector(handleSwipeGesture:)];
             swipeGestureRecognizer.delegate = self;
             swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-//            swipeGestureRecognizer.cancelsTouchesInView = NO;
             [view addGestureRecognizer:swipeGestureRecognizer];
 
             [self.gameLogic startGame];
@@ -333,6 +332,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 #pragma mark -
 #pragma mark Touches Handler
+
 - (void)handleTapGesture:(UIPanGestureRecognizer*)aPanGestureRecognizer {
     NSLog(@"Did Tap!");
     [self.gameLogic rotateShape];
@@ -358,7 +358,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)                gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]) {
         if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
@@ -374,11 +375,11 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer*)aSender {
-    
     CGPoint currentPoint = [aSender translationInView:aSender.view];
     if (currentPoint.y != 0) {
         currentPoint.y *= -1;
     }
+    
     if (!CGPointEqualToPoint(self.lastPanLocation, CGPointZero)) {
         CGFloat velocity = [aSender velocityInView:aSender.view].x;
         NSLog(@"velocity: %@", @(velocity));

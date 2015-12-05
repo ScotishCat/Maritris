@@ -21,7 +21,8 @@
 
 @implementation EMIAppController
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)            application:(UIApplication *)application
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Configure Cocos2d with the options set in SpriteBuilder
     NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"];
@@ -38,7 +39,7 @@
 #endif
     
     // transition manager creation
-    self.transitionManager = [EMITransitionManager new];
+    self.transitionManager = [EMITransitionManager sharedTransitionManager];
     self.transitionManager.navController = self.navController;
     
     // Configure CCFileUtils to work with SpriteBuilder
@@ -53,14 +54,7 @@
 }
 
 - (CCScene *)startScene {
-    CCScene *scene = [CCBReader loadAsScene:@"EMIStartScene"];
-    EMIStartScene *startScene = (EMIStartScene *)[scene.children firstObject];
-    
-    NSParameterAssert([startScene isKindOfClass:[EMIStartScene class]]);
-    
-    startScene.delegate = self.transitionManager;
-    
-    return scene;
+    return [CCBReader loadAsScene:@"EMIStartScene"];
 }
 
 @end

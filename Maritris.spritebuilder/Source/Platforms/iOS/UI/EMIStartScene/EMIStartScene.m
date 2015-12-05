@@ -8,21 +8,22 @@
 
 #import "EMIStartScene.h"
 
+#import "EMIMainScene.h"
+#import "EMITransitionManager.h"
+#import "EMILeaderboardViewController.h"
+
 @implementation EMIStartScene
 
 #pragma mark -
 #pragma mark Interface Handler
 
 - (void)onLeaderboardButton {
-    if ([self.delegate respondsToSelector:@selector(startSceneDidRequestLeaderboard:)]) {
-        [self.delegate startSceneDidRequestLeaderboard:self];
-    }
+    [[EMITransitionManager sharedTransitionManager] pushNextViewController:[EMILeaderboardViewController new]];
 }
 
 - (void)onPlayButton {
-    if ([self.delegate respondsToSelector:@selector(startSceneDidRequestPlayScene:)]) {
-        [self.delegate startSceneDidRequestPlayScene:self];
-    }
+    CCScene *scene = [CCBReader loadAsScene:@"EMIMainScene"];
+    [[EMITransitionManager sharedTransitionManager] showNextScene:scene];
 }
 
 @end
