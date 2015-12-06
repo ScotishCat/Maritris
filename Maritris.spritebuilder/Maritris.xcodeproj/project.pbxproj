@@ -103,6 +103,21 @@
 		D072D5331C124D8700A14186 /* EMILeaderboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D072D5311C124D8700A14186 /* EMILeaderboardViewController.xib */; };
 		D072D5361C124EB000A14186 /* EMILeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5351C124EB000A14186 /* EMILeaderboardView.m */; };
 		D072D53A1C132F8600A14186 /* UITableView+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5391C132F8600A14186 /* UITableView+EMIExtensions.m */; };
+		D072D54A1C14F29200A14186 /* UINib+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5491C14F29200A14186 /* UINib+EMIExtensions.m */; };
+		D072D5501C14F2BA00A14186 /* UIViewController+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D54F1C14F2BA00A14186 /* UIViewController+EMIExtensions.m */; };
+		D072D55E1C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5531C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m */; };
+		D072D55F1C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5551C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m */; };
+		D072D5601C14F2D400A14186 /* EMIArrayModelChanges+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5571C14F2D400A14186 /* EMIArrayModelChanges+UITableView.m */; };
+		D072D5611C14F2D400A14186 /* EMIArrayModelChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5591C14F2D400A14186 /* EMIArrayModelChanges.m */; };
+		D072D5621C14F2D400A14186 /* EMIArrayModelChangesOneIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D55B1C14F2D400A14186 /* EMIArrayModelChangesOneIndex.m */; };
+		D072D5631C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D55D1C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.m */; };
+		D072D5671C14F30000A14186 /* NSArray+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5661C14F30000A14186 /* NSArray+EMIExtensions.m */; };
+		D072D56B1C14F31700A14186 /* NSIndexPath+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D56A1C14F31700A14186 /* NSIndexPath+EMIExtensions.m */; };
+		D072D56F1C14F56F00A14186 /* EMIArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D56E1C14F56F00A14186 /* EMIArrayModel.m */; };
+		D072D5731C14F59D00A14186 /* EMITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5721C14F59D00A14186 /* EMITableViewCell.m */; };
+		D072D5771C14F7E400A14186 /* EMIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5761C14F7E400A14186 /* EMIModel.m */; };
+		D072D57B1C14F80500A14186 /* EMIObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57A1C14F80500A14186 /* EMIObservableObject.m */; };
+		D072D57F1C14F82B00A14186 /* EMIDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57E1C14F82B00A14186 /* EMIDispatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +259,36 @@
 		D072D5351C124EB000A14186 /* EMILeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMILeaderboardView.m; sourceTree = "<group>"; };
 		D072D5381C132F8600A14186 /* UITableView+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+EMIExtensions.h"; sourceTree = "<group>"; };
 		D072D5391C132F8600A14186 /* UITableView+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D5481C14F29200A14186 /* UINib+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+EMIExtensions.h"; sourceTree = "<group>"; };
+		D072D5491C14F29200A14186 /* UINib+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D54E1C14F2BA00A14186 /* UIViewController+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+EMIExtensions.h"; sourceTree = "<group>"; };
+		D072D54F1C14F2BA00A14186 /* UIViewController+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D5521C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMIArrayModelChanges+EMIIndexPathInitializers.h"; sourceTree = "<group>"; };
+		D072D5531C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMIArrayModelChanges+EMIIndexPathInitializers.m"; sourceTree = "<group>"; };
+		D072D5541C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMIArrayModelChanges+EMIInitializers.h"; sourceTree = "<group>"; };
+		D072D5551C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMIArrayModelChanges+EMIInitializers.m"; sourceTree = "<group>"; };
+		D072D5561C14F2D400A14186 /* EMIArrayModelChanges+UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMIArrayModelChanges+UITableView.h"; sourceTree = "<group>"; };
+		D072D5571C14F2D400A14186 /* EMIArrayModelChanges+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMIArrayModelChanges+UITableView.m"; sourceTree = "<group>"; };
+		D072D5581C14F2D400A14186 /* EMIArrayModelChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArrayModelChanges.h; sourceTree = "<group>"; };
+		D072D5591C14F2D400A14186 /* EMIArrayModelChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArrayModelChanges.m; sourceTree = "<group>"; };
+		D072D55A1C14F2D400A14186 /* EMIArrayModelChangesOneIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArrayModelChangesOneIndex.h; sourceTree = "<group>"; };
+		D072D55B1C14F2D400A14186 /* EMIArrayModelChangesOneIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArrayModelChangesOneIndex.m; sourceTree = "<group>"; };
+		D072D55C1C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArrayModelChangesTwoIndices.h; sourceTree = "<group>"; };
+		D072D55D1C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArrayModelChangesTwoIndices.m; sourceTree = "<group>"; };
+		D072D5651C14F30000A14186 /* NSArray+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+EMIExtensions.h"; sourceTree = "<group>"; };
+		D072D5661C14F30000A14186 /* NSArray+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D5691C14F31700A14186 /* NSIndexPath+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+EMIExtensions.h"; sourceTree = "<group>"; };
+		D072D56A1C14F31700A14186 /* NSIndexPath+EMIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+EMIExtensions.m"; sourceTree = "<group>"; };
+		D072D56D1C14F56F00A14186 /* EMIArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIArrayModel.h; sourceTree = "<group>"; };
+		D072D56E1C14F56F00A14186 /* EMIArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIArrayModel.m; sourceTree = "<group>"; };
+		D072D5711C14F59D00A14186 /* EMITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMITableViewCell.h; sourceTree = "<group>"; };
+		D072D5721C14F59D00A14186 /* EMITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMITableViewCell.m; sourceTree = "<group>"; };
+		D072D5751C14F7E400A14186 /* EMIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIModel.h; sourceTree = "<group>"; };
+		D072D5761C14F7E400A14186 /* EMIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIModel.m; sourceTree = "<group>"; };
+		D072D5791C14F80500A14186 /* EMIObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIObservableObject.h; sourceTree = "<group>"; };
+		D072D57A1C14F80500A14186 /* EMIObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIObservableObject.m; sourceTree = "<group>"; };
+		D072D57D1C14F82B00A14186 /* EMIDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIDispatch.h; sourceTree = "<group>"; };
+		D072D57E1C14F82B00A14186 /* EMIDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIDispatch.m; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -513,6 +558,16 @@
 		D072D4C51C0FB7E900A14186 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D072D57C1C14F82B00A14186 /* EMIDispatch */,
+				D072D5781C14F80500A14186 /* EMIObservableObject */,
+				D072D5741C14F7E400A14186 /* EMIModel */,
+				D072D5701C14F59D00A14186 /* EMITableViewCell */,
+				D072D56C1C14F56F00A14186 /* EMIArrayModel */,
+				D072D5681C14F31700A14186 /* NSIndexPath+EMIExtensions */,
+				D072D5641C14F30000A14186 /* NSArray+EMIExtensions */,
+				D072D5511C14F2D400A14186 /* EMIArrayModelChanges */,
+				D072D54D1C14F2BA00A14186 /* UIViewController+EMIExtensions */,
+				D072D5471C14F29200A14186 /* UINib+EMIExtensions */,
 				D072D5371C132F8600A14186 /* UITableView+EMIExtensions */,
 				D072D4C61C0FB7E900A14186 /* EMIMacros.h */,
 				D072D4C71C0FB7E900A14186 /* EMIMacros.m */,
@@ -724,6 +779,106 @@
 				D072D5391C132F8600A14186 /* UITableView+EMIExtensions.m */,
 			);
 			path = "UITableView+EMIExtensions";
+			sourceTree = "<group>";
+		};
+		D072D5471C14F29200A14186 /* UINib+EMIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5481C14F29200A14186 /* UINib+EMIExtensions.h */,
+				D072D5491C14F29200A14186 /* UINib+EMIExtensions.m */,
+			);
+			path = "UINib+EMIExtensions";
+			sourceTree = "<group>";
+		};
+		D072D54D1C14F2BA00A14186 /* UIViewController+EMIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				D072D54E1C14F2BA00A14186 /* UIViewController+EMIExtensions.h */,
+				D072D54F1C14F2BA00A14186 /* UIViewController+EMIExtensions.m */,
+			);
+			path = "UIViewController+EMIExtensions";
+			sourceTree = "<group>";
+		};
+		D072D5511C14F2D400A14186 /* EMIArrayModelChanges */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5521C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.h */,
+				D072D5531C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m */,
+				D072D5541C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.h */,
+				D072D5551C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m */,
+				D072D5561C14F2D400A14186 /* EMIArrayModelChanges+UITableView.h */,
+				D072D5571C14F2D400A14186 /* EMIArrayModelChanges+UITableView.m */,
+				D072D5581C14F2D400A14186 /* EMIArrayModelChanges.h */,
+				D072D5591C14F2D400A14186 /* EMIArrayModelChanges.m */,
+				D072D55A1C14F2D400A14186 /* EMIArrayModelChangesOneIndex.h */,
+				D072D55B1C14F2D400A14186 /* EMIArrayModelChangesOneIndex.m */,
+				D072D55C1C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.h */,
+				D072D55D1C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.m */,
+			);
+			path = EMIArrayModelChanges;
+			sourceTree = "<group>";
+		};
+		D072D5641C14F30000A14186 /* NSArray+EMIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5651C14F30000A14186 /* NSArray+EMIExtensions.h */,
+				D072D5661C14F30000A14186 /* NSArray+EMIExtensions.m */,
+			);
+			path = "NSArray+EMIExtensions";
+			sourceTree = "<group>";
+		};
+		D072D5681C14F31700A14186 /* NSIndexPath+EMIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5691C14F31700A14186 /* NSIndexPath+EMIExtensions.h */,
+				D072D56A1C14F31700A14186 /* NSIndexPath+EMIExtensions.m */,
+			);
+			path = "NSIndexPath+EMIExtensions";
+			sourceTree = "<group>";
+		};
+		D072D56C1C14F56F00A14186 /* EMIArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				D072D56D1C14F56F00A14186 /* EMIArrayModel.h */,
+				D072D56E1C14F56F00A14186 /* EMIArrayModel.m */,
+			);
+			path = EMIArrayModel;
+			sourceTree = "<group>";
+		};
+		D072D5701C14F59D00A14186 /* EMITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5711C14F59D00A14186 /* EMITableViewCell.h */,
+				D072D5721C14F59D00A14186 /* EMITableViewCell.m */,
+			);
+			path = EMITableViewCell;
+			sourceTree = "<group>";
+		};
+		D072D5741C14F7E400A14186 /* EMIModel */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5751C14F7E400A14186 /* EMIModel.h */,
+				D072D5761C14F7E400A14186 /* EMIModel.m */,
+			);
+			path = EMIModel;
+			sourceTree = "<group>";
+		};
+		D072D5781C14F80500A14186 /* EMIObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				D072D5791C14F80500A14186 /* EMIObservableObject.h */,
+				D072D57A1C14F80500A14186 /* EMIObservableObject.m */,
+			);
+			path = EMIObservableObject;
+			sourceTree = "<group>";
+		};
+		D072D57C1C14F82B00A14186 /* EMIDispatch */ = {
+			isa = PBXGroup;
+			children = (
+				D072D57D1C14F82B00A14186 /* EMIDispatch.h */,
+				D072D57E1C14F82B00A14186 /* EMIDispatch.m */,
+			);
+			path = EMIDispatch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1000,11 +1155,22 @@
 				D072D5111C0FB7E900A14186 /* EMITransitionManager.m in Sources */,
 				D072D5041C0FB7E900A14186 /* EMIBlockPosition.m in Sources */,
 				D072D5091C0FB7E900A14186 /* EMIShapeJ.m in Sources */,
+				D072D5621C14F2D400A14186 /* EMIArrayModelChangesOneIndex.m in Sources */,
 				D072D50F1C0FB7E900A14186 /* EMIMainScene.m in Sources */,
 				D072D5321C124D8700A14186 /* EMILeaderboardViewController.m in Sources */,
+				D072D54A1C14F29200A14186 /* UINib+EMIExtensions.m in Sources */,
+				D072D5731C14F59D00A14186 /* EMITableViewCell.m in Sources */,
+				D072D56B1C14F31700A14186 /* NSIndexPath+EMIExtensions.m in Sources */,
+				D072D55E1C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m in Sources */,
+				D072D5671C14F30000A14186 /* NSArray+EMIExtensions.m in Sources */,
+				D072D55F1C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m in Sources */,
 				D072D50B1C0FB7E900A14186 /* EMIShapeS.m in Sources */,
+				D072D5601C14F2D400A14186 /* EMIArrayModelChanges+UITableView.m in Sources */,
+				D072D5631C14F2D400A14186 /* EMIArrayModelChangesTwoIndices.m in Sources */,
 				D072D5021C0FB7E900A14186 /* EMIArray2D.m in Sources */,
+				D072D5611C14F2D400A14186 /* EMIArrayModelChanges.m in Sources */,
 				D072D50A1C0FB7E900A14186 /* EMIShapeL.m in Sources */,
+				D072D57B1C14F80500A14186 /* EMIObservableObject.m in Sources */,
 				D072D5081C0FB7E900A14186 /* EMIShapeI.m in Sources */,
 				D072D5061C0FB7E900A14186 /* EMIShape+RandomCreation.m in Sources */,
 				D072D50D1C0FB7E900A14186 /* EMIShapeT.m in Sources */,
@@ -1014,12 +1180,16 @@
 				D072D53A1C132F8600A14186 /* UITableView+EMIExtensions.m in Sources */,
 				D072D50E1C0FB7E900A14186 /* EMIShapeZ.m in Sources */,
 				D072D5031C0FB7E900A14186 /* EMIBlock.m in Sources */,
+				D072D5501C14F2BA00A14186 /* UIViewController+EMIExtensions.m in Sources */,
 				D072D5361C124EB000A14186 /* EMILeaderboardView.m in Sources */,
 				D072D4FE1C0FB7E900A14186 /* EMIAppDelegate.m in Sources */,
 				D072D5001C0FB7E900A14186 /* NSMutableArray+EMIExtensions.m in Sources */,
 				D072D5101C0FB7E900A14186 /* EMIStartScene.m in Sources */,
 				D072D4FF1C0FB7E900A14186 /* EMIMacros.m in Sources */,
+				D072D5771C14F7E400A14186 /* EMIModel.m in Sources */,
+				D072D57F1C14F82B00A14186 /* EMIDispatch.m in Sources */,
 				D072D5131C0FB82200A14186 /* main.m in Sources */,
+				D072D56F1C14F56F00A14186 /* EMIArrayModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
