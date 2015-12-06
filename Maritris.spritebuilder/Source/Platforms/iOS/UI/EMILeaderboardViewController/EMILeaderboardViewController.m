@@ -33,20 +33,13 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
     self.players = nil;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setupNavigationItems];
-    }
-    
-    return self;
-}
-
 #pragma mark - 
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setupNavigationItems];
     
     self.players = [@[@"Player1", @"Player2", @"Player3", @"Player4", @"Player5", @"Player6", @"Player7", @"Player8", @"Player9", @"Player10", @"Player11", @"Player12", @"Player13", @"Player14", @"Player15", @"Player16"] mutableCopy];
 }
