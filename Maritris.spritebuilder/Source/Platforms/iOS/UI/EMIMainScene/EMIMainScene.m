@@ -10,6 +10,10 @@
 static const CGFloat        kEMIBlockSize                           = 15.0f;
 static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
+static const NSTimeInterval kEMIRedrawAnimationDuration = 0.05;
+static const NSTimeInterval kEMIFadeAnimationDuration = 0.5;
+static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
+
 @interface EMIMainScene () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong)   UIView              *view;
 @property (nonatomic, strong)   EMIMaritrisGame     *gameLogic;
@@ -147,8 +151,13 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 - (void)maritrisGameShapeDidDrop:(EMIMaritrisGame *)game {
     [self stopUpdates];
+    self.userInteractionEnabled = NO;
     [self redrawShape:game.currentShape completion:^{
         [game moveShapeDown];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kEMIRedrawAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.userInteractionEnabled = YES;
+    
+        });
     }];
 }
 
@@ -211,7 +220,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 }
 
 - (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion {
-    const NSTimeInterval animationDuration = 0.05;
+    const NSTimeInterval animationDuration = kEMIRedrawAnimationDuration;
     for (EMIBlock *block in shape.blocks) {
         id sprite = block.sprite;
         NSInteger column = block.column;
@@ -223,10 +232,19 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
         
         CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
                                                          position:[self pointForColumn:block.column row:block.row]];
+        if (block == shape.blocks.lastObject) {
+            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:^{
+                for (EMIBlock *block in shape.blocks) {
+                    CCNode *sprite = block.sprite;
+                    sprite.position = [self pointForColumn:block.column row:block.row];
+                }
+                
+                if (completion) {
+                    completion();
+                }}];
+        }
         [sprite runAction:moveAction];
     }
-    
-    [self callCompletion:completion withDelay:animationDuration];
 }
 
 - (void)movePreviewShapeToBoard:(EMIShape *)shape completion:(dispatch_block_t)completion {
@@ -235,10 +253,22 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
         id sprite = block.sprite;
         CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
                                                          position:[self pointForColumn:block.column row:block.row]];
+        if (block == shape.blocks.lastObject) {
+            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:completion];
+        }
         [sprite runAction:moveAction];
     }
+}
+
+- (CCAction *)actionByCombiningActions:(NSArray *)actions withCompletion:(dispatch_block_t)completion {
+    NSMutableArray *newActions = [NSMutableArray arrayWithArray:actions];
+    [newActions addObject:[CCActionCallBlock actionWithBlock:^{
+        if (completion) {
+            completion();
+        }}]];
+    CCAction *result = [CCActionSequence actionWithArray:newActions];
     
-    [self callCompletion:completion withDelay:animationDuration];
+    return result;
 }
 
 - (CCColor *)colorForColor:(EMIBlockColor)color {
@@ -276,8 +306,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
                                                          position:[self pointForColumn:block.column row:block.row]];
         // moveAction
         CCAction *fadeAction = [CCActionFadeIn actionWithDuration:animationDuration];
-        CCAction *spawnAction = [CCActionSpawn actionWithArray:@[moveAction, fadeAction]];
-        [sprite runAction:spawnAction];
+        [sprite runAction:moveAction];
+        [sprite runAction:fadeAction];
     }
     
     [self callCompletion:completion withDelay:animationDuration];
@@ -285,7 +315,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 - (void)callCompletion:(dispatch_block_t)completion withDelay:(NSTimeInterval)delay {
     if (completion) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.21 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             completion();
         });
     }
@@ -307,8 +337,8 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
             EMIBlock *block = column[blockIndex];
             CGPoint newPosition = [self pointForColumn:block.column row:block.row];
             CCNode *sprite = block.sprite;
-            NSTimeInterval delay = columnIndex * 0.05 + blockIndex * 0.05;
-            NSTimeInterval duration = ((([sprite position].y - newPosition.y) / kEMIBlockSize) * 0.1);
+            NSTimeInterval delay = columnIndex * kEMIRedrawAnimationDuration + blockIndex * kEMIRedrawAnimationDuration;
+            NSTimeInterval duration = ((([sprite position].y - newPosition.y) / kEMIBlockSize) * kEMICollapseAnimationDuration);
             CCAction *moveAction = [CCActionMoveTo actionWithDuration:duration position:newPosition];
             CCAction *sequence = [CCActionSequence actionWithArray:
                                   @[[CCActionDelay actionWithDuration:delay], moveAction]];
@@ -320,7 +350,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
     for (NSArray *rowToRemove in removedLines) {
         for (EMIBlock *block in rowToRemove) {
             CCActionSequence *sequence = [CCActionSequence actionWithArray:
-                                          @[[CCActionFadeOut actionWithDuration:0.5], [CCActionRemove action]]];
+                                          @[[CCActionFadeOut actionWithDuration:kEMIFadeAnimationDuration], [CCActionRemove action]]];
             [block.sprite runAction:sequence];
         }
     }
@@ -345,10 +375,6 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-//    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]
-//        && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-//        return NO;
-//    }
     if (([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]] &&
         [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) ||
         ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &&

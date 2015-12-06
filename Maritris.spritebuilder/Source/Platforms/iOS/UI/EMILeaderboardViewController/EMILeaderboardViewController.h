@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EMILeaderboardViewController : UIViewController
+@interface EMILeaderboardViewController : UITableViewController
 
 @end

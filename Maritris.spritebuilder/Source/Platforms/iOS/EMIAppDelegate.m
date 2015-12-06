@@ -38,10 +38,6 @@
         [UIScreen mainScreen].currentMode = [UIScreenMode emulatedMode:UIScreenScaledAspectFitEmulationMode];
 #endif
     
-    // transition manager creation
-    self.transitionManager = [EMITransitionManager sharedTransitionManager];
-    self.transitionManager.navController = self.navController;
-    
     // Configure CCFileUtils to work with SpriteBuilder
     [CCBReader configureCCFileUtils];
     
@@ -49,6 +45,10 @@
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
     [self setupCocos2dWithOptions:cocos2dSetup];
+
+    // transition manager creation
+    self.transitionManager = [EMITransitionManager sharedTransitionManager];
+    self.transitionManager.navController = self.navController;
     
     return YES;
 }

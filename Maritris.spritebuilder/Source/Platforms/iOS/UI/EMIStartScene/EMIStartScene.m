@@ -18,7 +18,9 @@
 #pragma mark Interface Handler
 
 - (void)onLeaderboardButton {
-    [[EMITransitionManager sharedTransitionManager] pushNextViewController:[EMILeaderboardViewController new]];
+
+    EMILeaderboardViewController *contrller = [[EMILeaderboardViewController alloc] initWithNibName:@"EMILeaderboardViewController" bundle:nil];
+    [[EMITransitionManager sharedTransitionManager] pushNextViewController:contrller];
 }
 
 - (void)onPlayButton {
