@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78931FAE1C151CEB00FE8095 /* EMIMaritrisViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877AE2F1C139BA800EBC82F /* EMIMaritrisViewModel.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		7A4036EE19DE3F93007B6E8F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -178,6 +179,8 @@
 		5B121013197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121015197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
+		7877AE2E1C139BA800EBC82F /* EMIMaritrisViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMaritrisViewModel.h; sourceTree = "<group>"; };
+		7877AE2F1C139BA800EBC82F /* EMIMaritrisViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisViewModel.m; sourceTree = "<group>"; };
 		7A4035FF19DDEE84007B6E8F /* Maritris Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Maritris Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4036F419DE3FA8007B6E8F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493A19E37F9300F65F90 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
@@ -386,6 +389,15 @@
 				5B121015197483EE004C1E1D /* ic_launcher.png */,
 			);
 			path = "drawable-xxhdpi";
+			sourceTree = "<group>";
+		};
+		7877AE2B1C139B9100EBC82F /* EMIMaritrisViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7877AE2E1C139BA800EBC82F /* EMIMaritrisViewModel.h */,
+				7877AE2F1C139BA800EBC82F /* EMIMaritrisViewModel.m */,
+			);
+			path = EMIMaritrisViewModel;
 			sourceTree = "<group>";
 		};
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
@@ -725,6 +737,7 @@
 		D072D4F41C0FB7E900A14186 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7877AE2B1C139B9100EBC82F /* EMIMaritrisViewModel */,
 				D072D52C1C124AF800A14186 /* EMILeaderboardViewController */,
 				D072D4F51C0FB7E900A14186 /* EMIMainScene */,
 				D072D4F81C0FB7E900A14186 /* EMIStartScene */,
@@ -1161,6 +1174,7 @@
 				D072D54A1C14F29200A14186 /* UINib+EMIExtensions.m in Sources */,
 				D072D5731C14F59D00A14186 /* EMITableViewCell.m in Sources */,
 				D072D56B1C14F31700A14186 /* NSIndexPath+EMIExtensions.m in Sources */,
+				78931FAE1C151CEB00FE8095 /* EMIMaritrisViewModel.m in Sources */,
 				D072D55E1C14F2D400A14186 /* EMIArrayModelChanges+EMIIndexPathInitializers.m in Sources */,
 				D072D5671C14F30000A14186 /* NSArray+EMIExtensions.m in Sources */,
 				D072D55F1C14F2D400A14186 /* EMIArrayModelChanges+EMIInitializers.m in Sources */,
