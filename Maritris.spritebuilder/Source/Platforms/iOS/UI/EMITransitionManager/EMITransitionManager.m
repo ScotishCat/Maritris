@@ -13,7 +13,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)sharedTransitionManager {
++ (instancetype)sharedTransitionManager {
     static EMITransitionManager *__transitionManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

@@ -11,7 +11,7 @@
 @interface EMITransitionManager : NSObject
 @property (nonatomic, strong)   CCNavigationController  *navController;
 
-+ (id)sharedTransitionManager;
++ (instancetype)sharedTransitionManager;
 
 // The new scene will be executed, the previous scene remains in memory.
 // ONLY call it if there is already a running scene.

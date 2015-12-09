@@ -8,6 +8,7 @@ extern const CGFloat kEMIBlockSize;
 
 @property (nonatomic, readonly, strong)   CCLabelTTF          *scoreLabel;
 @property (nonatomic, readonly, strong)   CCLabelTTF          *levelLabel;
+@property (nonatomic, readonly, strong)   CCNode              *gameBoardLayer;
 
 - (void)startUpdates;
 - (void)stopUpdates;
@@ -18,5 +19,7 @@ extern const CGFloat kEMIBlockSize;
                   fallenBlocks:(NSArray *)fallenBlocks
                     completion:(dispatch_block_t)completion;
 - (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion;
+
+- (void)onQuitGame;
 
 @end

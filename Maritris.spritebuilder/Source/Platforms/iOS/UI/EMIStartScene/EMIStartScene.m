@@ -12,10 +12,25 @@
 #import "EMITransitionManager.h"
 #import "EMILeaderboardViewController.h"
 
+static NSString *const kEMIBackgroundMusicName = @"Pixelland";
+static NSString *const kEMIBackgroundMusicFileType = @"mp3";
+
 @implementation EMIStartScene
 
 #pragma mark -
 #pragma mark Interface Handler
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        NSString *musicPath = [[NSBundle mainBundle] pathForResource:kEMIBackgroundMusicName ofType:kEMIBackgroundMusicFileType];
+        if (musicPath) {
+            [[OALSimpleAudio sharedInstance] playBg:musicPath loop:YES];
+        }
+    }
+    
+    return self;
+}
 
 - (void)onLeaderboardButton {
 

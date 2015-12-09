@@ -6,6 +6,7 @@
 #import "EMIShape.h"
 
 #import "EMIMaritrisViewModel.h"
+#import "EMITransitionManager.h"
 
 #import "EMIMacros.h"
 
@@ -19,6 +20,7 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
 @property (nonatomic, strong)   EMIMaritrisViewModel *viewModel;
 @property (nonatomic, strong)   CCNode              *gameLayer;
 @property (nonatomic, strong)   CCNode              *shapeLayer;
+@property (nonatomic, strong)   CCNode              *gameBoardLayer;
 @property (nonatomic, assign)   CGPoint             layerPosition;
 @property (nonatomic, copy)     NSDate              *lastUpdate;
 @property (nonatomic, strong)   NSMutableDictionary *textureChache;
@@ -41,7 +43,7 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
         self.shapeLayer = [CCNode node];
         self.textureChache = [NSMutableDictionary dictionary];
         self.userInteractionEnabled = YES;
-        
+                
         dispatch_async( dispatch_get_main_queue(), ^{
             self.viewModel = [[EMIMaritrisViewModel alloc] initWithScene:self];
             
@@ -53,10 +55,15 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
             gameBoard.contentSize = CGSizeMake(kEMIBlockSize * kEMIGameNumberOfColumns, kEMIBlockSize * kEMIGameNumberOfRows);
             gameBoard.anchorPoint = ccp(0, 1);
             gameBoard.position = self.layerPosition;
+            self.gameBoardLayer = gameBoard;
             
             self.shapeLayer.position = self.layerPosition;
             [self.shapeLayer addChild:gameBoard];
             [self.gameLayer addChild:self.shapeLayer];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+                    [self onQuitGame];
+                });
         });
     }
     
@@ -84,6 +91,25 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
 }
 #pragma mark -
 #pragma mark Private
+
+- (void)onQuitGame {
+    NSLog(@"Quit called");
+    [[CCDirector sharedDirector] pause];
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure you want to quit?" message:@"YOur progress will be lost." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *quitAction = [UIAlertAction actionWithTitle:@"Quit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [[CCDirector sharedDirector] popToRootScene];
+    }];
+    [controller addAction:quitAction];
+
+    UIAlertAction *resumeAction = [UIAlertAction actionWithTitle:@"Resume" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [[CCDirector sharedDirector] resume];
+    }];
+    [controller addAction:resumeAction];
+    
+    [[EMITransitionManager sharedTransitionManager].navController presentViewController:controller animated:YES completion:nil];
+}
 
 - (CGPoint)pointForColumn:(NSUInteger)column row:(NSUInteger)row {
     CGFloat x = floor(self.layerPosition.x + ((CGFloat)column  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
