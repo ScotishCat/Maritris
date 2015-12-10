@@ -3,8 +3,8 @@
 extern const CGFloat kEMIBlockSize;
 
 @interface EMIMainScene : CCNode
-@property (nonatomic, assign)   NSTimeInterval      updateLengthMilliseconds;
-@property (nonatomic, readonly, copy)     NSDate              *lastUpdate;
+@property (nonatomic, assign)           NSTimeInterval      updateLengthMilliseconds;
+@property (nonatomic, readonly, copy)   NSDate              *lastUpdate;
 
 @property (nonatomic, readonly, strong)   CCLabelTTF          *scoreLabel;
 @property (nonatomic, readonly, strong)   CCLabelTTF          *levelLabel;
@@ -20,6 +20,6 @@ extern const CGFloat kEMIBlockSize;
                     completion:(dispatch_block_t)completion;
 - (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion;
 
-- (void)onQuitGame;
+- (void)onQuitButton;
 
 @end

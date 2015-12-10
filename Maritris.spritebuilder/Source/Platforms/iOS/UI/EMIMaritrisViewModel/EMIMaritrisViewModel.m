@@ -17,19 +17,23 @@
 static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 @interface EMIMaritrisViewModel () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic, weak)                         EMIMainScene    *scene;
-@property (nonatomic, strong)                       EMIMaritrisGame *gameLogic;
-@property (nonatomic, strong)                       UIView          *view;
+@property (nonatomic, weak)     EMIMainScene    *scene;
+@property (nonatomic, strong)   EMIMaritrisGame *gameLogic;
+@property (nonatomic, strong)   UIView          *view;
+@property (nonatomic, assign)   CGPoint         lastPanLocation;
 
-@property (nonatomic, assign)                       CGPoint         lastPanLocation;
-@property (nonatomic, assign, getter=isDraggingInProgress)  BOOL     draggingInProgress;
+@property (nonatomic, assign, getter=isDraggingInProgress)  BOOL    draggingInProgress;
 @property (nonatomic, assign, getter=isUpdating)            BOOL    updating;
 
-- (void)performGameUpdate;
+- (void)nextShape;
+- (void)setUpView;
 
 @end
 
 @implementation EMIMaritrisViewModel
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
 
 - (instancetype)initWithScene:(EMIMainScene *)scene {
     self = [super init];
@@ -46,6 +50,9 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
     
     return self;
 }
+
+#pragma mark - 
+#pragma mark Public
 
 - (void)performGameUpdate {
     [self.gameLogic moveShapeDown];
@@ -130,6 +137,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 #pragma mark -
 #pragma mark Private
+
 - (void)nextShape {
     [self.gameLogic moveNextShapeToStart];
     
@@ -156,16 +164,19 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
     UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                         action:@selector(handleTapGesture:)];
     tapGestureRecognizer.delegate = self;
+    tapGestureRecognizer.cancelsTouchesInView = NO;
     [view addGestureRecognizer:tapGestureRecognizer];
 
     UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                         action:@selector(handlePanGesture:)];
     panGestureRecognizer.delegate = self;
+    panGestureRecognizer.cancelsTouchesInView = NO;
     [view addGestureRecognizer:panGestureRecognizer];
 
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                                  action:@selector(handleSwipeGesture:)];
     swipeGestureRecognizer.delegate = self;
+    swipeGestureRecognizer.cancelsTouchesInView = NO;
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
     [view addGestureRecognizer:swipeGestureRecognizer];
 }
@@ -173,17 +184,23 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 #pragma mark -
 #pragma mark Touches Handler
 
-- (void)handleTapGesture:(UIPanGestureRecognizer*)aPanGestureRecognizer {
-    NSLog(@"Did Tap!");
-    [self.gameLogic rotateShape];
+- (void)handleTapGesture:(UITapGestureRecognizer*)aRecognizer {
+    CGPoint location = [aRecognizer locationInView:aRecognizer.view];
+    // Take into account the anchor point of the game board layer
+    location.y *= -1;
+    if (CGRectContainsPoint(self.scene.gameBoardLayer.boundingBox, location)) {
+        NSLog(@"Did Tap!");
+        [self.gameLogic rotateShape];
+    }
 }
 
-- (void)handleSwipeGesture:(UISwipeGestureRecognizer*)aPanGestureRecognizer {
+- (void)handleSwipeGesture:(UISwipeGestureRecognizer*)aRecognizer {
     NSLog(@"Did Swipe!");
     [self.gameLogic dropShape];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)                            gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+   shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     if (([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]] &&
         [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) ||
@@ -191,6 +208,7 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
         [otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]])) {
             return NO;
     }
+    
     return YES;
 }
 

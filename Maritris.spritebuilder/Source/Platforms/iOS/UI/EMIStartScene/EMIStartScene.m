@@ -12,18 +12,22 @@
 #import "EMITransitionManager.h"
 #import "EMILeaderboardViewController.h"
 
-static NSString *const kEMIBackgroundMusicName = @"Pixelland";
-static NSString *const kEMIBackgroundMusicFileType = @"mp3";
+#import "UIViewController+EMIExtensions.h"
+
+static NSString * const kEMIBackgroundMusicName     = @"Pixelland";
+static NSString * const kEMIBackgroundMusicFileType = @"mp3";
+static NSString * const kEMIMainSceneTitle          = @"EMIMainScene";
 
 @implementation EMIStartScene
 
 #pragma mark -
-#pragma mark Interface Handler
+#pragma mark Initializations and Deallocations
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        NSString *musicPath = [[NSBundle mainBundle] pathForResource:kEMIBackgroundMusicName ofType:kEMIBackgroundMusicFileType];
+        NSString *musicPath = [[NSBundle mainBundle] pathForResource:kEMIBackgroundMusicName
+                                                              ofType:kEMIBackgroundMusicFileType];
         if (musicPath) {
             [[OALSimpleAudio sharedInstance] playBg:musicPath loop:YES];
         }
@@ -32,14 +36,16 @@ static NSString *const kEMIBackgroundMusicFileType = @"mp3";
     return self;
 }
 
-- (void)onLeaderboardButton {
+#pragma mark -
+#pragma mark Interface Handler
 
-    EMILeaderboardViewController *contrller = [[EMILeaderboardViewController alloc] initWithNibName:@"EMILeaderboardViewController" bundle:nil];
-    [[EMITransitionManager sharedTransitionManager] pushNextViewController:contrller];
+- (void)onLeaderboardButton {
+    EMILeaderboardViewController *controller = [EMILeaderboardViewController controller];
+    [[EMITransitionManager sharedTransitionManager] pushNextViewController:controller];
 }
 
 - (void)onPlayButton {
-    CCScene *scene = [CCBReader loadAsScene:@"EMIMainScene"];
+    CCScene *scene = [CCBReader loadAsScene:kEMIMainSceneTitle];
     [[EMITransitionManager sharedTransitionManager] showNextScene:scene];
 }
 

@@ -120,6 +120,7 @@
 		D072D5771C14F7E400A14186 /* EMIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5761C14F7E400A14186 /* EMIModel.m */; };
 		D072D57B1C14F80500A14186 /* EMIObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57A1C14F80500A14186 /* EMIObservableObject.m */; };
 		D072D57F1C14F82B00A14186 /* EMIDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57E1C14F82B00A14186 /* EMIDispatch.m */; };
+		D072D58D1C19B73600A14186 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D072D58C1C19B73600A14186 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +295,7 @@
 		D072D57A1C14F80500A14186 /* EMIObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIObservableObject.m; sourceTree = "<group>"; };
 		D072D57D1C14F82B00A14186 /* EMIDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIDispatch.h; sourceTree = "<group>"; };
 		D072D57E1C14F82B00A14186 /* EMIDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIDispatch.m; sourceTree = "<group>"; };
+		D072D58C1C19B73600A14186 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -333,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D072D58D1C19B73600A14186 /* GameKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -524,6 +527,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D072D58C1C19B73600A14186 /* GameKit.framework */,
 				7A59493C19E37FB200F65F90 /* libz.dylib */,
 				7A59493A19E37F9300F65F90 /* OpenGL.framework */,
 				7A4036F419DE3FA8007B6E8F /* AppKit.framework */,

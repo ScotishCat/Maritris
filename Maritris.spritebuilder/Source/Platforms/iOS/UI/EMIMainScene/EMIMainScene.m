@@ -10,11 +10,15 @@
 
 #import "EMIMacros.h"
 
-const CGFloat        kEMIBlockSize                           = 15.0f;
-
-static const NSTimeInterval kEMIRedrawAnimationDuration = 0.05;
-static const NSTimeInterval kEMIFadeAnimationDuration = 0.5;
-static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
+const           CGFloat         kEMIBlockSize                   = 15.0f;
+static const    NSTimeInterval  kEMIMillisecondsInSecond        = -1000.0;
+static const    NSTimeInterval  kEMIRedrawAnimationDuration     = 0.05;
+static const    NSTimeInterval  kEMIFadeAnimationDuration       = 0.5;
+static const    NSTimeInterval  kEMICollapseAnimationDuration   = 0.1;
+static NSString *   const       kEMIQuitAction                  = @"Quit";
+static NSString *   const       kEMIAlertControllerQuitTitle    = @"Are you sure you want to quit?";
+static NSString *   const       kEMIAlertControllerQuitMessage  = @"Your progress will be lost.";
+static NSString *   const       kEMIAlertControllerResumeTitle  = @"Resume";
 
 @interface EMIMainScene () <EMIMaritrisGameDelegate>
 @property (nonatomic, strong)   EMIMaritrisViewModel *viewModel;
@@ -27,13 +31,20 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
 @property (nonatomic, strong)   CCLabelTTF          *scoreLabel;
 @property (nonatomic, strong)   CCLabelTTF          *levelLabel;
 
-- (void)animateCollapsingLines:(NSArray *)removedLines
-                  fallenBlocks:(NSArray *)fallenBlocks
-                    completion:(dispatch_block_t)completion;
+- (void)update:(CCTime)delta;
+
+- (CGPoint)pointForColumn:(NSUInteger)column row:(NSUInteger)row;
+- (CCAction *)actionByCombiningActions:(NSArray *)actions withCompletion:(dispatch_block_t)completion;
+
+- (CCColor *)colorForColor:(EMIBlockColor)color;
+- (void)callCompletion:(dispatch_block_t)completion withDelay:(NSTimeInterval)delay;
 
 @end
 
 @implementation EMIMainScene
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
 
 - (instancetype)init {
     self = [super init];
@@ -60,27 +71,14 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
             self.shapeLayer.position = self.layerPosition;
             [self.shapeLayer addChild:gameBoard];
             [self.gameLayer addChild:self.shapeLayer];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                dispatch_get_main_queue(), ^{
-                    [self onQuitGame];
-                });
         });
     }
     
     return self;
 }
 
-- (void)update:(CCTime)delta {
-    if (!self.lastUpdate) {
-        return;
-    }
-    
-    NSTimeInterval timePassed = self.lastUpdate.timeIntervalSinceNow * -1000.0;
-    if (timePassed > self.updateLengthMilliseconds) {
-        self.lastUpdate = [NSDate date];
-        [self.viewModel performGameUpdate];
-    }
-}
+#pragma mark -
+#pragma mark Public
 
 - (void)startUpdates {
     self.lastUpdate = [NSDate date];
@@ -88,103 +86,6 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
 
 - (void)stopUpdates {
     self.lastUpdate = nil;
-}
-#pragma mark -
-#pragma mark Private
-
-- (void)onQuitGame {
-    NSLog(@"Quit called");
-    [[CCDirector sharedDirector] pause];
-    
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure you want to quit?" message:@"YOur progress will be lost." preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *quitAction = [UIAlertAction actionWithTitle:@"Quit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [[CCDirector sharedDirector] popToRootScene];
-    }];
-    [controller addAction:quitAction];
-
-    UIAlertAction *resumeAction = [UIAlertAction actionWithTitle:@"Resume" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [[CCDirector sharedDirector] resume];
-    }];
-    [controller addAction:resumeAction];
-    
-    [[EMITransitionManager sharedTransitionManager].navController presentViewController:controller animated:YES completion:nil];
-}
-
-- (CGPoint)pointForColumn:(NSUInteger)column row:(NSUInteger)row {
-    CGFloat x = floor(self.layerPosition.x + ((CGFloat)column  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
-    
-    CGFloat boardHeight = kEMIGameNumberOfRows * kEMIBlockSize;
-    CGFloat y = floor(boardHeight - self.layerPosition.y - ((CGFloat)row  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
-    
-    return CGPointMake(x, y);
-}
-
-- (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion {
-    const NSTimeInterval animationDuration = kEMIRedrawAnimationDuration;
-    for (EMIBlock *block in shape.blocks) {
-        id sprite = block.sprite;
-        NSInteger column = block.column;
-        if (column < 0) {
-            column = 0;
-        } else if (column >= kEMIGameNumberOfColumns) {
-            column = kEMIGameNumberOfColumns - 1;
-        }
-        
-        CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
-                                                         position:[self pointForColumn:block.column row:block.row]];
-        if (block == shape.blocks.lastObject) {
-            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:^{
-                for (EMIBlock *block in shape.blocks) {
-                    CCNode *sprite = block.sprite;
-                    sprite.position = [self pointForColumn:block.column row:block.row];
-                }
-                
-                if (completion) {
-                    completion();
-                }}];
-        }
-        [sprite runAction:moveAction];
-    }
-}
-
-- (void)movePreviewShapeToBoard:(EMIShape *)shape completion:(dispatch_block_t)completion {
-    const NSTimeInterval animationDuration = 0.2;
-    for (EMIBlock *block in shape.blocks) {
-        id sprite = block.sprite;
-        CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
-                                                         position:[self pointForColumn:block.column row:block.row]];
-        if (block == shape.blocks.lastObject) {
-            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:completion];
-        }
-        [sprite runAction:moveAction];
-    }
-}
-
-- (CCAction *)actionByCombiningActions:(NSArray *)actions withCompletion:(dispatch_block_t)completion {
-    NSMutableArray *newActions = [NSMutableArray arrayWithArray:actions];
-    [newActions addObject:[CCActionCallBlock actionWithBlock:^{
-        if (completion) {
-            completion();
-        }}]];
-    CCAction *result = [CCActionSequence actionWithArray:newActions];
-    
-    return result;
-}
-
-- (CCColor *)colorForColor:(EMIBlockColor)color {
-    static NSDictionary *sColors = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sColors = @{@(EMIBlockColorBlue) : [CCColor colorWithUIColor:[UIColor blueColor]],
-                    @(EMIBlockColorOrange) : [CCColor colorWithUIColor:[UIColor orangeColor]],
-                    @(EMIBlockColorPurple) : [CCColor colorWithUIColor:[UIColor purpleColor]],
-                    @(EMIBlockColorYellow) : [CCColor colorWithUIColor:[UIColor yellowColor]],
-                    @(EMIBlockColorRed) : [CCColor colorWithUIColor:[UIColor redColor]]};
-    });
-    
-    return sColors[@(color)];
 }
 
 - (void)addPreviewShapeToScene:(EMIShape *)shape completion:(dispatch_block_t)completion {
@@ -214,11 +115,46 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
     [self callCompletion:completion withDelay:animationDuration];
 }
 
-- (void)callCompletion:(dispatch_block_t)completion withDelay:(NSTimeInterval)delay {
-    if (completion) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            completion();
-        });
+- (void)movePreviewShapeToBoard:(EMIShape *)shape completion:(dispatch_block_t)completion {
+    const NSTimeInterval animationDuration = 0.2;
+    for (EMIBlock *block in shape.blocks) {
+        id sprite = block.sprite;
+        CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
+                                                         position:[self pointForColumn:block.column row:block.row]];
+        if (block == shape.blocks.lastObject) {
+            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:completion];
+        }
+        
+        [sprite runAction:moveAction];
+    }
+}
+
+- (void)redrawShape:(EMIShape *)shape completion:(dispatch_block_t)completion {
+    const NSTimeInterval animationDuration = kEMIRedrawAnimationDuration;
+    for (EMIBlock *block in shape.blocks) {
+        id sprite = block.sprite;
+        NSInteger column = block.column;
+        if (column < 0) {
+            column = 0;
+        } else if (column >= kEMIGameNumberOfColumns) {
+            column = kEMIGameNumberOfColumns - 1;
+        }
+        
+        CCAction *moveAction = [CCActionMoveTo actionWithDuration:animationDuration
+                                                         position:[self pointForColumn:block.column row:block.row]];
+        if (block == shape.blocks.lastObject) {
+            moveAction = [self actionByCombiningActions:@[moveAction] withCompletion:^{
+                for (EMIBlock *block in shape.blocks) {
+                    CCNode *sprite = block.sprite;
+                    sprite.position = [self pointForColumn:block.column row:block.row];
+                }
+                
+                if (completion) {
+                    completion();
+                }}];
+        }
+        
+        [sprite runAction:moveAction];
     }
 }
 
@@ -255,6 +191,93 @@ static const NSTimeInterval kEMICollapseAnimationDuration = 0.1;
     [self runAction:[CCActionSequence actionWithArray:
                      @[[CCActionDelay actionWithDuration:longestDuration],
                        [CCActionCallBlock actionWithBlock:completion]]]];
+}
+
+#pragma mark - 
+#pragma mark Interface Handlers
+
+- (void)onQuitButton {
+    NSLog(@"Quit called");
+    [[CCDirector sharedDirector] pause];
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:kEMIAlertControllerQuitTitle
+                                                                        message:kEMIAlertControllerQuitMessage
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *quitAction = [UIAlertAction actionWithTitle:kEMIQuitAction
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:^(UIAlertAction *action) {
+                                                           [[CCDirector sharedDirector] popToRootScene];
+                                                       }];
+                                                    [controller addAction:quitAction];
+
+    UIAlertAction *resumeAction = [UIAlertAction actionWithTitle:kEMIAlertControllerResumeTitle
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {
+                                                                [[CCDirector sharedDirector] resume];
+                                                            }];
+                                                            [controller addAction:resumeAction];
+    
+    [[EMITransitionManager sharedTransitionManager].navController presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark - 
+#pragma mark Private
+
+- (CGPoint)pointForColumn:(NSUInteger)column row:(NSUInteger)row {
+    CGFloat x = floor(self.layerPosition.x + ((CGFloat)column  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
+    
+    CGFloat boardHeight = kEMIGameNumberOfRows * kEMIBlockSize;
+    CGFloat y = floor(boardHeight - self.layerPosition.y - ((CGFloat)row  * kEMIBlockSize) + (kEMIBlockSize * 0.5));
+    
+    return CGPointMake(x, y);
+}
+
+- (CCAction *)actionByCombiningActions:(NSArray *)actions withCompletion:(dispatch_block_t)completion {
+    NSMutableArray *newActions = [NSMutableArray arrayWithArray:actions];
+    [newActions addObject:[CCActionCallBlock actionWithBlock:^{
+        if (completion) {
+            completion();
+        }}]];
+    
+    CCAction *result = [CCActionSequence actionWithArray:newActions];
+    
+    return result;
+}
+
+- (CCColor *)colorForColor:(EMIBlockColor)color {
+    static NSDictionary *sColors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sColors = @{@(EMIBlockColorBlue) : [CCColor colorWithUIColor:[UIColor blueColor]],
+                    @(EMIBlockColorMagenta) : [CCColor colorWithUIColor:[UIColor magentaColor]],
+                    @(EMIBlockColorOrange) : [CCColor colorWithUIColor:[UIColor orangeColor]],
+                    @(EMIBlockColorPurple) : [CCColor colorWithUIColor:[UIColor purpleColor]],
+                    @(EMIBlockColorYellow) : [CCColor colorWithUIColor:[UIColor yellowColor]],
+                    @(EMIBlockColorRed) : [CCColor colorWithUIColor:[UIColor redColor]]};
+    });
+    
+    return sColors[@(color)];
+}
+
+- (void)callCompletion:(dispatch_block_t)completion withDelay:(NSTimeInterval)delay {
+    if (completion) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            completion();
+        });
+    }
+}
+
+- (void)update:(CCTime)delta {
+    if (!self.lastUpdate) {
+        return;
+    }
+    
+    NSTimeInterval timePassed = self.lastUpdate.timeIntervalSinceNow * kEMIMillisecondsInSecond;
+    if (timePassed > self.updateLengthMilliseconds) {
+        self.lastUpdate = [NSDate date];
+        [self.viewModel performGameUpdate];
+    }
 }
 
 @end

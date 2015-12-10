@@ -2975,7 +2975,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>onExitGame</string>
+							<string>onQuitButton</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -3023,6 +3023,14 @@
 							<string>Quit</string>
 							<false/>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>zoomWhenHighlighted</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>

@@ -11,7 +11,7 @@
 
 typedef NS_ENUM(NSUInteger, EMIBlockColor) {
     EMIBlockColorBlue = 0,
-    EMIBlockColorTeal,
+    EMIBlockColorMagenta,
     EMIBlockColorOrange,
     EMIBlockColorPurple,
     EMIBlockColorYellow,
