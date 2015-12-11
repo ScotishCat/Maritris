@@ -208,6 +208,7 @@ static NSString *   const       kEMIAlertControllerResumeTitle  = @"Resume";
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction *action) {
                                                            [[CCDirector sharedDirector] popToRootScene];
+                                                           [[CCDirector sharedDirector] resume];
                                                        }];
                                                     [controller addAction:quitAction];
 

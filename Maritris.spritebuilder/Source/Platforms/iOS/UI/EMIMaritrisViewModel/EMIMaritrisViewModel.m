@@ -14,13 +14,19 @@
 #import "EMIBlock.h"
 #import "EMIMacros.h"
 
-static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
+static const    NSTimeInterval  kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
+static const    NSTimeInterval  kEMIGameUpdateDecrementBig              = 100.0f;
+static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
 
 @interface EMIMaritrisViewModel () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, weak)     EMIMainScene    *scene;
 @property (nonatomic, strong)   EMIMaritrisGame *gameLogic;
 @property (nonatomic, strong)   UIView          *view;
 @property (nonatomic, assign)   CGPoint         lastPanLocation;
+
+@property (nonatomic, strong)   UIPanGestureRecognizer   *panGestureRecongizer;
+@property (nonatomic, strong)   UITapGestureRecognizer   *tapGestureRecongizer;
+@property (nonatomic, strong)   UISwipeGestureRecognizer *swipeGestureRecongizer;
 
 @property (nonatomic, assign, getter=isDraggingInProgress)  BOOL    draggingInProgress;
 @property (nonatomic, assign, getter=isUpdating)            BOOL    updating;
@@ -34,6 +40,12 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    [self.view removeGestureRecognizer:self.tapGestureRecongizer];
+    [self.view removeGestureRecognizer:self.panGestureRecongizer];
+    [self.view removeGestureRecognizer:self.swipeGestureRecongizer];
+}
 
 - (instancetype)initWithScene:(EMIMainScene *)scene {
     self = [super init];
@@ -128,10 +140,10 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 - (void)maritrisGameDidLevelUp:(EMIMaritrisGame *)game {
     EMIMainScene *scene = self.scene;
     scene.levelLabel.string = [NSString stringWithFormat:@"%@", @(game.gameLevel)];
-    if (scene.updateLengthMilliseconds >= 100) {
-        scene.updateLengthMilliseconds -= 100;
-    } else if (scene.updateLengthMilliseconds > 50) {
-        scene.updateLengthMilliseconds -= 50;
+    if (scene.updateLengthMilliseconds >= kEMIGameUpdateDecrementBig) {
+        scene.updateLengthMilliseconds -= kEMIGameUpdateDecrementBig;
+    } else if (scene.updateLengthMilliseconds > kEMIGameUpdateDecrementSmall) {
+        scene.updateLengthMilliseconds -= kEMIGameUpdateDecrementSmall;
     }
 }
 
@@ -159,25 +171,27 @@ static const NSTimeInterval kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
     UIView *view = [[CCDirector sharedDirector] view];
     self.view = view;
     view.multipleTouchEnabled = NO;
-
     
-    UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(handleTapGesture:)];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(handleTapGesture:)];
     tapGestureRecognizer.delegate = self;
     tapGestureRecognizer.cancelsTouchesInView = NO;
+    self.tapGestureRecongizer = tapGestureRecognizer;
     [view addGestureRecognizer:tapGestureRecognizer];
-
-    UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(handlePanGesture:)];
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(handlePanGesture:)];
     panGestureRecognizer.delegate = self;
     panGestureRecognizer.cancelsTouchesInView = NO;
+    self.panGestureRecongizer = panGestureRecognizer;
     [view addGestureRecognizer:panGestureRecognizer];
-
+    
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                                  action:@selector(handleSwipeGesture:)];
     swipeGestureRecognizer.delegate = self;
     swipeGestureRecognizer.cancelsTouchesInView = NO;
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    self.swipeGestureRecongizer = swipeGestureRecognizer;
     [view addGestureRecognizer:swipeGestureRecognizer];
 }
 

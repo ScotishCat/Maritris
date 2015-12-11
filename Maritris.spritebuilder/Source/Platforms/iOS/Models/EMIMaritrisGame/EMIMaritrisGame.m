@@ -15,17 +15,14 @@
 #import "EMIBlock.h"
 #import "EMIArray2D.h"
 
-static const NSUInteger kEMIPointsPerLine = 25;
-static const NSUInteger kEMIGameLevelThreshold = 500;
-
-const NSUInteger kEMIGameNumberOfColumns = 13;
-const NSUInteger kEMIGameNumberOfRows = 35;
-
-static const NSUInteger kEMIGamePreviewColumnPosition = 16;
-static const NSUInteger kEMIGamePreviewRowPosition = 5;
-
-static const NSUInteger kEMIGameStartColumnPosition = 4;
-static const NSUInteger kEMIGameStartRowPosition = 2;
+static const    NSUInteger kEMIPointsPerLine                = 25;
+static const    NSUInteger kEMIGameLevelThreshold           = 500;
+const           NSUInteger kEMIGameNumberOfColumns          = 13;
+const           NSUInteger kEMIGameNumberOfRows             = 35;
+static const    NSUInteger kEMIGamePreviewColumnPosition    = 16;
+static const    NSUInteger kEMIGamePreviewRowPosition       = 5;
+static const    NSUInteger kEMIGameStartColumnPosition      = 4;
+static const    NSUInteger kEMIGameStartRowPosition         = 2;
 
 @interface EMIMaritrisGame ()
 @property (nonatomic, assign) NSUInteger score;
