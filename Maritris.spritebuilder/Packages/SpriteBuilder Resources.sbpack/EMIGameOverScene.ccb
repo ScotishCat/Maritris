@@ -47,7 +47,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>gameOverLabel</string>
+				<string></string>
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
@@ -139,19 +139,6 @@
 						<string>Check</string>
 						<key>value</key>
 						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>0.18518322706222534</real>
-							<real>0.14680550992488861</real>
-							<real>0.69669860601425171</real>
-							<real>1</real>
-						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -267,7 +254,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>scoreLabel</string>
+				<string></string>
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
@@ -360,19 +347,6 @@
 						<string>Check</string>
 						<key>value</key>
 						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>0.18518322706222534</real>
-							<real>0.14680550992488861</real>
-							<real>0.69669860601425171</real>
-							<real>1</real>
-						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -479,6 +453,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -512,7 +488,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>66.00006103515625</real>
+							<real>78.00006103515625</real>
 							<real>137.11050415039062</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1142,7 +1118,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>EMIGameOverScene</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>
@@ -1211,8 +1187,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
