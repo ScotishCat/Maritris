@@ -140,10 +140,10 @@ static const    NSUInteger kEMIGameStartRowPosition         = 2;
 }
 
 - (void)endGame {
+    [self notifyWithSelector:@selector(maritrisGameDidEnd:)];
+
     self.score = 0;
     self.gameLevel = 1;
-    
-    [self notifyWithSelector:@selector(maritrisGameDidEnd:)];
 }
 
 - (void)moveShapeDown {

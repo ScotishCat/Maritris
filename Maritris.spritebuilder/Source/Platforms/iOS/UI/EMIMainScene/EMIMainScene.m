@@ -21,15 +21,15 @@ static NSString *   const       kEMIAlertControllerQuitMessage  = @"Your progres
 static NSString *   const       kEMIAlertControllerResumeTitle  = @"Resume";
 
 @interface EMIMainScene () <EMIMaritrisGameDelegate>
-@property (nonatomic, strong)   EMIMaritrisViewModel *viewModel;
-@property (nonatomic, strong)   CCNode              *gameLayer;
-@property (nonatomic, strong)   CCNode              *shapeLayer;
-@property (nonatomic, strong)   CCNode              *gameBoardLayer;
-@property (nonatomic, assign)   CGPoint             layerPosition;
-@property (nonatomic, copy)     NSDate              *lastUpdate;
-@property (nonatomic, strong)   NSMutableDictionary *textureChache;
-@property (nonatomic, strong)   CCLabelTTF          *scoreLabel;
-@property (nonatomic, strong)   CCLabelTTF          *levelLabel;
+@property (nonatomic, strong)   EMIMaritrisViewModel    *viewModel;
+@property (nonatomic, strong)   CCNode                  *gameLayer;
+@property (nonatomic, strong)   CCNode                  *shapeLayer;
+@property (nonatomic, strong)   CCNode                  *gameBoardLayer;
+@property (nonatomic, assign)   CGPoint                 layerPosition;
+@property (nonatomic, copy)     NSDate                  *lastUpdate;
+@property (nonatomic, strong)   NSMutableDictionary     *textureChache;
+@property (nonatomic, strong)   CCLabelTTF              *scoreLabel;
+@property (nonatomic, strong)   CCLabelTTF              *levelLabel;
 
 - (void)update:(CCTime)delta;
 
@@ -86,6 +86,10 @@ static NSString *   const       kEMIAlertControllerResumeTitle  = @"Resume";
 
 - (void)stopUpdates {
     self.lastUpdate = nil;
+}
+
+- (BOOL)isUpdating {
+    return (nil != self.lastUpdate);
 }
 
 - (void)addPreviewShapeToScene:(EMIShape *)shape completion:(dispatch_block_t)completion {

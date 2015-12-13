@@ -122,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Source/Platforms/iOS/UI/EMIMainScene/EMIMainScene.m"
-            timestampString = "471484726.811795"
+            timestampString = "471740938.434017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "-actionByCombiningActions:withCompletion:"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-pointForColumn:row:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,8 +175,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "-onQuitButton"
-            landmarkType = "5">
+            landmarkName = "@implementation EMIMainScene"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

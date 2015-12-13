@@ -13,6 +13,7 @@
 #import "EMILeaderboardViewController.h"
 
 #import "UIViewController+EMIExtensions.h"
+#import "EMIGameCenter.h"
 
 static NSString * const kEMIBackgroundMusicName     = @"Pixelland";
 static NSString * const kEMIBackgroundMusicFileType = @"mp3";
@@ -31,6 +32,8 @@ static NSString * const kEMIMainSceneTitle          = @"EMIMainScene";
         if (musicPath) {
             [[OALSimpleAudio sharedInstance] playBg:musicPath loop:YES];
         }
+        
+        [[EMIGameCenter sharedCenter] authenticateLocalPlayerWithCompletion:nil];
     }
     
     return self;

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		78931FAE1C151CEB00FE8095 /* EMIMaritrisViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877AE2F1C139BA800EBC82F /* EMIMaritrisViewModel.m */; };
 		78931FB31C179C6D00FE8095 /* Pixelland.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78931FB21C179C6D00FE8095 /* Pixelland.mp3 */; };
+		789CAAFE1C1C505200DB58D1 /* EMIGameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 789CAAFD1C1C505200DB58D1 /* EMIGameCenter.m */; };
+		789CAB101C1CE4B000DB58D1 /* EMIGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 789CAB0F1C1CE4B000DB58D1 /* EMIGameOverScene.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		7A4036EE19DE3F93007B6E8F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -184,6 +186,10 @@
 		7877AE2E1C139BA800EBC82F /* EMIMaritrisViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIMaritrisViewModel.h; sourceTree = "<group>"; };
 		7877AE2F1C139BA800EBC82F /* EMIMaritrisViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIMaritrisViewModel.m; sourceTree = "<group>"; };
 		78931FB21C179C6D00FE8095 /* Pixelland.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pixelland.mp3; sourceTree = "<group>"; };
+		789CAAFC1C1C505200DB58D1 /* EMIGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIGameCenter.h; sourceTree = "<group>"; };
+		789CAAFD1C1C505200DB58D1 /* EMIGameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIGameCenter.m; sourceTree = "<group>"; };
+		789CAB0E1C1CE4B000DB58D1 /* EMIGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIGameOverScene.h; sourceTree = "<group>"; };
+		789CAB0F1C1CE4B000DB58D1 /* EMIGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIGameOverScene.m; sourceTree = "<group>"; };
 		7A4035FF19DDEE84007B6E8F /* Maritris Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Maritris Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4036F419DE3FA8007B6E8F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493A19E37F9300F65F90 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
@@ -413,6 +419,24 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		789CAAF91C1C504000DB58D1 /* EMIGameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				789CAAFC1C1C505200DB58D1 /* EMIGameCenter.h */,
+				789CAAFD1C1C505200DB58D1 /* EMIGameCenter.m */,
+			);
+			path = EMIGameCenter;
+			sourceTree = "<group>";
+		};
+		789CAB0B1C1CE48600DB58D1 /* EMIGameOverScene */ = {
+			isa = PBXGroup;
+			children = (
+				789CAB0E1C1CE4B000DB58D1 /* EMIGameOverScene.h */,
+				789CAB0F1C1CE4B000DB58D1 /* EMIGameOverScene.m */,
+			);
+			path = EMIGameOverScene;
+			sourceTree = "<group>";
+		};
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,6 +639,7 @@
 		D072D4CC1C0FB7E900A14186 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				789CAAF91C1C504000DB58D1 /* EMIGameCenter */,
 				D072D4CD1C0FB7E900A14186 /* EMIArray2D */,
 				D072D4D01C0FB7E900A14186 /* EMIBlock */,
 				D072D4D31C0FB7E900A14186 /* EMIBlockPosition */,
@@ -752,6 +777,7 @@
 		D072D4F41C0FB7E900A14186 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				789CAB0B1C1CE48600DB58D1 /* EMIGameOverScene */,
 				7877AE2B1C139B9100EBC82F /* EMIMaritrisViewModel */,
 				D072D52C1C124AF800A14186 /* EMILeaderboardViewController */,
 				D072D4F51C0FB7E900A14186 /* EMIMainScene */,
@@ -1205,8 +1231,10 @@
 				D072D5061C0FB7E900A14186 /* EMIShape+RandomCreation.m in Sources */,
 				D072D50D1C0FB7E900A14186 /* EMIShapeT.m in Sources */,
 				D072D50C1C0FB7E900A14186 /* EMIShapeSquare.m in Sources */,
+				789CAAFE1C1C505200DB58D1 /* EMIGameCenter.m in Sources */,
 				D072D5051C0FB7E900A14186 /* EMIMaritrisGame.m in Sources */,
 				D072D5071C0FB7E900A14186 /* EMIShape.m in Sources */,
+				789CAB101C1CE4B000DB58D1 /* EMIGameOverScene.m in Sources */,
 				D072D53A1C132F8600A14186 /* UITableView+EMIExtensions.m in Sources */,
 				D072D50E1C0FB7E900A14186 /* EMIShapeZ.m in Sources */,
 				D072D5031C0FB7E900A14186 /* EMIBlock.m in Sources */,
@@ -1525,6 +1553,7 @@
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.idapgroup.puzzlerific;
 				PRODUCT_NAME = Maritris;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
@@ -1558,6 +1587,7 @@
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.idapgroup.puzzlerific;
 				PRODUCT_NAME = Maritris;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";

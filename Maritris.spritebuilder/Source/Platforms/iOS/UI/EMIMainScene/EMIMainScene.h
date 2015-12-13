@@ -9,6 +9,7 @@ extern const CGFloat kEMIBlockSize;
 @property (nonatomic, readonly, strong)   CCLabelTTF          *scoreLabel;
 @property (nonatomic, readonly, strong)   CCLabelTTF          *levelLabel;
 @property (nonatomic, readonly, strong)   CCNode              *gameBoardLayer;
+@property (nonatomic, readonly, getter=isUpdating) BOOL       updating;
 
 - (void)startUpdates;
 - (void)stopUpdates;

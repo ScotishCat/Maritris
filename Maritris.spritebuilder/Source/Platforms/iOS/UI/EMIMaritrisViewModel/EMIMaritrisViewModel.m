@@ -14,9 +14,17 @@
 #import "EMIBlock.h"
 #import "EMIMacros.h"
 
+#import "EMIGameOverScene.h"
+#import "EMITransitionManager.h"
+#import "EMIGameCenter.h"
+
 static const    NSTimeInterval  kEMIUpdateIntervalMillisecondsLevelOne  = 600.0f;
 static const    NSTimeInterval  kEMIGameUpdateDecrementBig              = 100.0f;
 static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
+
+static const    CGFloat         kEMITintNodeColorComponent = 0.0f;
+static const    CGFloat         kEMITintNodeAlphaComponent = 0.5f;
+static const    CGPoint         kEMITintNodePosition = {0.0, 0.0};
 
 @interface EMIMaritrisViewModel () <EMIMaritrisGameDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, weak)     EMIMainScene    *scene;
@@ -30,6 +38,7 @@ static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
 
 @property (nonatomic, assign, getter=isDraggingInProgress)  BOOL    draggingInProgress;
 @property (nonatomic, assign, getter=isUpdating)            BOOL    updating;
+@property (nonatomic, assign, getter=isGameEnded)           BOOL    gameEnded;
 
 - (void)nextShape;
 - (void)setUpView;
@@ -67,14 +76,19 @@ static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
 #pragma mark Public
 
 - (void)performGameUpdate {
-    [self.gameLogic moveShapeDown];
+    if (!self.isGameEnded) {
+        [self.gameLogic moveShapeDown];
+    }
 }
 
 #pragma mark -
 #pragma mark EMIMaritrisGameDelegate
 
 - (void)maritrisGameDidStart:(EMIMaritrisGame *)game {
-    // TODO: Update labels etc.
+    self.scene.scoreLabel.string = [NSString stringWithFormat:@"%@", @(game.score)];
+    self.scene.levelLabel.string = [NSString stringWithFormat:@"%@", @(game.gameLevel)];
+    
+    self.gameEnded = NO;
     self.scene.updateLengthMilliseconds = kEMIUpdateIntervalMillisecondsLevelOne;
     
     if (nil != game.nextShape && nil == [[game.nextShape.blocks firstObject] sprite]) {
@@ -89,10 +103,23 @@ static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
 }
 
 - (void)maritrisGameDidEnd:(EMIMaritrisGame *)game {
-    // TODO: Update labels etc.
+    self.gameEnded = YES;
     [self.scene stopUpdates];
-    [self.scene animateCollapsingLines:[game removeAllLines] fallenBlocks:@[] completion:^{
-        [game startGame];
+    
+    EMIGameCenter *gameCenter = [EMIGameCenter sharedCenter];
+    if (gameCenter.isEnabled) {
+        [gameCenter submitScore:game.score];
+    }
+
+    // Add dark semi-transparent backgound that covers all game screen
+    CCNode *tintNode = [self addTintedBackground];
+    
+    [self showGameOverSceneWithScore:game.score restartHandler:^{
+        [self.scene animateCollapsingLines:[game removeAllLines] fallenBlocks:@[] completion:^{
+            [game startGame];
+        }];
+
+        [tintNode removeFromParent];
     }];
 }
 
@@ -149,6 +176,32 @@ static const    NSTimeInterval  kEMIGameUpdateDecrementSmall            = 50.0f;
 
 #pragma mark -
 #pragma mark Private
+
+- (CCNode *)addTintedBackground {
+    CCNode *sprite = [CCNodeColor nodeWithColor:[CCColor colorWithUIColor:[UIColor colorWithWhite:kEMITintNodeColorComponent alpha:kEMITintNodeAlphaComponent]]];
+    
+    sprite.contentSize = self.scene.contentSizeInPoints;
+    sprite.position = kEMITintNodePosition;
+    [self.scene addChild:sprite];
+    
+    return sprite;
+}
+
+- (void)showGameOverSceneWithScore:(NSUInteger)score restartHandler:(dispatch_block_t)handler {
+    CCScene *gameOverRoot = [CCBReader loadAsScene:@"EMIGameOverScene"];
+    EMIGameOverScene *gameOverScene = (EMIGameOverScene *)[gameOverRoot.children firstObject];
+    NSAssert([gameOverScene isKindOfClass:[EMIGameOverScene class]], @"Node %@ must be of EMIGameOverScene class", gameOverScene);
+    gameOverScene.scoreLabel.string = [NSString stringWithFormat:@"Your score: %@", @(score)];
+    
+    gameOverScene.restartButtonTappedHandler = ^{
+        [gameOverRoot removeFromParent];
+        if (handler) {
+            handler();
+        }
+    };
+    
+    [self.scene addChild:gameOverRoot];
+}
 
 - (void)nextShape {
     [self.gameLogic moveNextShapeToStart];

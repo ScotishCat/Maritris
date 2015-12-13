@@ -13,12 +13,17 @@
 
 #import "EMIMacros.h"
 
+#import "EMIGameCenter.h"
+#import <GameKit/GameKit.h>
+
 EMIViewControllerMainViewProperty(EMILeaderboardViewController, leaderboardView, EMILeaderboardView);
 
 static NSString * const kEMITableViewTitle  =    @"Leaderboard";
 
 @interface EMILeaderboardViewController ()
-@property (nonatomic, strong) EMIArrayModel   *players;
+@property (nonatomic, strong) EMIArrayModel             *scores;
+@property (nonatomic, readonly) UITableView             *scoresTableView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView   *progressView;
 
 - (void)setupNavigationItems;
 
@@ -30,7 +35,7 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.players = nil;
+    self.scores = nil;
 }
 
 #pragma mark - 
@@ -40,8 +45,28 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
     [super viewDidLoad];
     
     [self setupNavigationItems];
+
+    self.progressView.hidden = NO;
+    [self.progressView startAnimating];
     
-    self.players = [@[@"Player1", @"Player2", @"Player3", @"Player4", @"Player5", @"Player6", @"Player7", @"Player8", @"Player9", @"Player10", @"Player11", @"Player12", @"Player13", @"Player14", @"Player15", @"Player16"] mutableCopy];
+    self.scores = [EMIArrayModel new];
+    EMIGameCenter *gameCenter = [EMIGameCenter sharedCenter];
+    [gameCenter authenticateLocalPlayerWithCompletion:^(BOOL authenticated, NSError *error) {
+        if (authenticated) {
+            [[EMIGameCenter sharedCenter] loadLeaderboardWithCompletion:^(NSArray *scores) {
+                EMIArrayModel *scoresModel = self.scores;
+                for (GKScore *currentScore in scores) {
+                    [scoresModel addModel:currentScore];
+                }
+
+                [self.progressView stopAnimating];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.scoresTableView reloadData];
+                });
+            }];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +84,7 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.players.count;
+    return self.scores.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying
@@ -73,13 +98,18 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseID];
     }
     
-    cell.textLabel.text = self.players[indexPath.row];
-    cell.detailTextLabel.text = @"103112";
+    GKScore *score = self.scores[indexPath.row];
+    cell.textLabel.text = score.player.displayName;
+    cell.detailTextLabel.text = score.formattedValue;
     return cell;
 }
 
 #pragma mark -
 #pragma mark Private
+
+- (UITableView *)scoresTableView {
+    return (UITableView *)self.view;
+}
 
 - (void)setupNavigationItems {
     UINavigationItem *navigationItem = self.navigationItem;

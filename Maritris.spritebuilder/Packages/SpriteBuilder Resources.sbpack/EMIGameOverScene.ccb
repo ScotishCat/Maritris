@@ -258,7 +258,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_scoreLabel</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -278,7 +278,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>160.00006103515625</real>
+							<real>161.00006103515625</real>
 							<real>294.74801635742188</real>
 							<integer>0</integer>
 							<integer>0</integer>
