@@ -21,11 +21,12 @@ EMIViewControllerMainViewProperty(EMILeaderboardViewController, leaderboardView,
 static NSString * const kEMITableViewTitle  =    @"Leaderboard";
 
 @interface EMILeaderboardViewController ()
-@property (nonatomic, strong) EMIArrayModel             *scores;
-@property (nonatomic, readonly) UITableView             *scoresTableView;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView   *progressView;
+@property (nonatomic, strong)   EMIArrayModel                       *scores;
+@property (nonatomic, readonly) UITableView                         *scoresTableView;
+@property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *progressView;
 
 - (void)setupNavigationItems;
+- (void)loadScores;
 
 @end
 
@@ -45,28 +46,7 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
     [super viewDidLoad];
     
     [self setupNavigationItems];
-
-    self.progressView.hidden = NO;
-    [self.progressView startAnimating];
-    
-    self.scores = [EMIArrayModel new];
-    EMIGameCenter *gameCenter = [EMIGameCenter sharedCenter];
-    [gameCenter authenticateLocalPlayerWithCompletion:^(BOOL authenticated, NSError *error) {
-        if (authenticated) {
-            [[EMIGameCenter sharedCenter] loadLeaderboardWithCompletion:^(NSArray *scores) {
-                EMIArrayModel *scoresModel = self.scores;
-                for (GKScore *currentScore in scores) {
-                    [scoresModel addModel:currentScore];
-                }
-
-                [self.progressView stopAnimating];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.scoresTableView reloadData];
-                });
-            }];
-        }
-    }];
+    [self loadScores];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,15 +86,36 @@ static NSString * const kEMITableViewTitle  =    @"Leaderboard";
 
 #pragma mark -
 #pragma mark Private
-
-- (UITableView *)scoresTableView {
-    return (UITableView *)self.view;
-}
+//
+//- (UITableView *)scoresTableView {
+//    return (UITableView *)self.view;
+//}
 
 - (void)setupNavigationItems {
     UINavigationItem *navigationItem = self.navigationItem;
     navigationItem.title = kEMITableViewTitle;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)loadScores {
+    self.scores = [EMIArrayModel new];
+    EMIGameCenter *gameCenter = [EMIGameCenter sharedCenter];
+    [gameCenter authenticateLocalPlayerWithCompletion:^(BOOL authenticated, NSError *error) {
+        if (authenticated) {
+            [[EMIGameCenter sharedCenter] loadLeaderboardWithCompletion:^(NSArray *scores) {
+                EMIArrayModel *scoresModel = self.scores;
+                for (GKScore *currentScore in scores) {
+                    [scoresModel addModel:currentScore];
+                }
+                
+                [self.progressView stopAnimating];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.leaderboardView.tableView reloadData];
+                });
+            }];
+        }
+    }];
 }
 
 @end

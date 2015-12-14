@@ -104,7 +104,6 @@
 		D072D5111C0FB7E900A14186 /* EMITransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D4FD1C0FB7E900A14186 /* EMITransitionManager.m */; };
 		D072D5131C0FB82200A14186 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5121C0FB82200A14186 /* main.m */; };
 		D072D5321C124D8700A14186 /* EMILeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5301C124D8700A14186 /* EMILeaderboardViewController.m */; };
-		D072D5331C124D8700A14186 /* EMILeaderboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D072D5311C124D8700A14186 /* EMILeaderboardViewController.xib */; };
 		D072D5361C124EB000A14186 /* EMILeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5351C124EB000A14186 /* EMILeaderboardView.m */; };
 		D072D53A1C132F8600A14186 /* UITableView+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5391C132F8600A14186 /* UITableView+EMIExtensions.m */; };
 		D072D54A1C14F29200A14186 /* UINib+EMIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D5491C14F29200A14186 /* UINib+EMIExtensions.m */; };
@@ -123,6 +122,7 @@
 		D072D57B1C14F80500A14186 /* EMIObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57A1C14F80500A14186 /* EMIObservableObject.m */; };
 		D072D57F1C14F82B00A14186 /* EMIDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D072D57E1C14F82B00A14186 /* EMIDispatch.m */; };
 		D072D58D1C19B73600A14186 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D072D58C1C19B73600A14186 /* GameKit.framework */; };
+		D0C1DB3D1C1E3C9900B7CC9E /* EMILeaderboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C1DB3C1C1E3C9900B7CC9E /* EMILeaderboardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,7 +266,6 @@
 		D072D5121C0FB82200A14186 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D072D52F1C124D8700A14186 /* EMILeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMILeaderboardViewController.h; sourceTree = "<group>"; };
 		D072D5301C124D8700A14186 /* EMILeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMILeaderboardViewController.m; sourceTree = "<group>"; };
-		D072D5311C124D8700A14186 /* EMILeaderboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMILeaderboardViewController.xib; sourceTree = "<group>"; };
 		D072D5341C124EB000A14186 /* EMILeaderboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMILeaderboardView.h; sourceTree = "<group>"; };
 		D072D5351C124EB000A14186 /* EMILeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMILeaderboardView.m; sourceTree = "<group>"; };
 		D072D5381C132F8600A14186 /* UITableView+EMIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+EMIExtensions.h"; sourceTree = "<group>"; };
@@ -302,6 +301,7 @@
 		D072D57D1C14F82B00A14186 /* EMIDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMIDispatch.h; sourceTree = "<group>"; };
 		D072D57E1C14F82B00A14186 /* EMIDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMIDispatch.m; sourceTree = "<group>"; };
 		D072D58C1C19B73600A14186 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		D0C1DB3C1C1E3C9900B7CC9E /* EMILeaderboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMILeaderboardViewController.xib; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -819,7 +819,7 @@
 			children = (
 				D072D52F1C124D8700A14186 /* EMILeaderboardViewController.h */,
 				D072D5301C124D8700A14186 /* EMILeaderboardViewController.m */,
-				D072D5311C124D8700A14186 /* EMILeaderboardViewController.xib */,
+				D0C1DB3C1C1E3C9900B7CC9E /* EMILeaderboardViewController.xib */,
 				D072D5341C124EB000A14186 /* EMILeaderboardView.h */,
 				D072D5351C124EB000A14186 /* EMILeaderboardView.m */,
 			);
@@ -1121,7 +1121,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D072D5331C124D8700A14186 /* EMILeaderboardViewController.xib in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
@@ -1131,6 +1130,7 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
+				D0C1DB3D1C1E3C9900B7CC9E /* EMILeaderboardViewController.xib in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
